@@ -14,4 +14,9 @@ enum L10n {
 		static let done = NSLocalizedString("common.done", comment: "")
 		static let cancel = NSLocalizedString("common.cancel", comment: "")
 	}
+	
+	enum LoginScreen {
+		static let title = "Mobile Up\nGallery"
+		static let textButton = "Вход через VK"
+	}
 }
