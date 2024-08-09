@@ -16,8 +16,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		window = UIWindow(windowScene: windowScene)
 		
-		let rootViewController = LoginAssembly.makeModule(dependencies: LoginAssembly.Dependencies())
-		window?.rootViewController = rootViewController
+		let navController = UINavigationController()
+		let rootViewController = LoginAssembly.makeModule(
+			dependencies: LoginAssembly.Dependencies(navigationController: navController)
+		)
+		navController.pushViewController(rootViewController, animated: false)
+		
+		window?.rootViewController = navController
 		window?.makeKeyAndVisible()
 	}
 }

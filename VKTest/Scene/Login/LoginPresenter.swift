@@ -8,18 +8,22 @@
 import Foundation
 
 protocol ILoginPresenter {
-
+	func routeToAuthScreen()
 }
 
 final class LoginPresenter: ILoginPresenter {
 	// MARK: - Dependencies
 	
-	private weak var view: ILoginView?
+	private weak var view: LoginViewController?
 	private let router: ILoginRouter
 	
 	// MARK: - Initialization
 	
 	init(router: ILoginRouter) {
 		self.router = router
+	}
+	
+	func routeToAuthScreen() {
+		router.routeToAuthView()
 	}
 }

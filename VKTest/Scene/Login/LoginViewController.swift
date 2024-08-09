@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol ILoginView: AnyObject {
-	
-}
-
 class LoginViewController: UIViewController {
 	
 	private let presenter: ILoginPresenter
@@ -34,10 +30,23 @@ class LoginViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		setupUI()
 	}
 }
 
-extension LoginViewController: ILoginView {
-	
+// MARK: - Actions
+
+private extension LoginViewController {
+	@objc
+	func authButtonPressed() {
+		presenter.routeToAuthScreen()
+	}
 }
 
+// MARK: - SetupUI
+
+private extension LoginViewController {
+	func setupUI() {
+		contentView.authButton.addTarget(self, action: #selector(authButtonPressed), for: .touchUpInside)
+	}
+}

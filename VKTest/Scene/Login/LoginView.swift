@@ -10,7 +10,7 @@ import UIKit
 final class LoginView: UIView {
 	
 	lazy var authButton: UIButton = makeAuthButton()
-	private lazy var titleLabel: UILabel = makeTitleLabel()
+	lazy var titleLabel: UILabel = makeTitleLabel()
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)

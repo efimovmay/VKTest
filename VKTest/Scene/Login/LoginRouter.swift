@@ -5,7 +5,7 @@
 //  Created by Aleksey Efimov on 09.08.2024.
 //
 
-import Foundation
+import UIKit
 
 protocol ILoginRouter {
 	func routeToAuthView()
@@ -13,13 +13,16 @@ protocol ILoginRouter {
 }
 
 final class LoginRouter: ILoginRouter {
-
+	
+	private let navigationController: UINavigationController
 //	private let network: INetworkService
 
-	init() {
+	init(navigationController: UINavigationController) {
+		self.navigationController = navigationController
 	}
 	
 	func routeToAuthView() {
+		navigationController.present(AuthViewController(), animated: true)
 	}
 	
 	func routeToGalleryView() {
