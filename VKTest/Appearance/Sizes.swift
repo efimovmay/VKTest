@@ -12,15 +12,9 @@ enum Sizes {
 	static let cornerRadius: CGFloat = 10
 
 	enum LoginScreen {
-		static let screenHeigth: CGFloat = 500
-		static let doneButtonHeith: CGFloat = 50
-	}
-
-	enum Font {
-		static let title: CGFloat = 28
-		static let detailTitle: CGFloat = 22
-		static let regular: CGFloat = 16
-		static let titleEvent: CGFloat = 18
+		static let titleFont: CGFloat = 44
+		static let authButtonHeigth: CGFloat = 52
+		static let authButtonCorner: CGFloat = 12
 	}
 	
 	enum Padding {
