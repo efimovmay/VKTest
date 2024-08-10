@@ -22,7 +22,7 @@ final class LoginRouter: ILoginRouter {
 	}
 	
 	func routeToAuthView() {
-		navigationController.present(AuthViewController(), animated: true)
+		navigationController.present(AuthViewController(presenter: AuthPresenter()), animated: true)
 	}
 	
 	func routeToGalleryView() {

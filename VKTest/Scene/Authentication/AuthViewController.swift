@@ -6,31 +6,52 @@
 //
 
 import UIKit
+import WebKit
+
+protocol IAuthView: AnyObject {
+	func loadWebView(request: URLRequest)
+	func loadPageDone()
+}
 
 class AuthViewController: UIViewController {
 	
-//	private let presenter: ILoginPresenter
-//	private lazy var contentView = LoginView()
+	private let presenter: IAuthPresenter
+	private lazy var contentView = AuthView()
 	
-	// MARK: - Initialization
+	init(presenter: IAuthPresenter) {
+		self.presenter = presenter
+		super.init(nibName: nil, bundle: nil)
+	}
 	
-//	init(presenter: ILoginPresenter) {
-//		self.presenter = presenter
-//		super.init(nibName: nil, bundle: nil)
-//	}
+	@available(*, unavailable)
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 	
-//	@available(*, unavailable)
-//	required init?(coder: NSCoder) {
-//		fatalError("init(coder:) has not been implemented")
-//	}
-	
-//	override func loadView() {
-//		view = contentView
-//	}
+	override func loadView() {
+		view = contentView
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = .red
-//		setupUI()
+		presenter.viewIsReady(view: self)
+		setupUI()
+	}
+}
+
+private extension AuthViewController {
+	func setupUI() {
+		contentView.webView.navigationDelegate = presenter
+	}
+}
+
+extension AuthViewController: IAuthView {
+	func loadWebView(request: URLRequest) {
+		contentView.webView.load(request)
+		contentView.activityIndicator.startAnimating()
+	}
+	
+	func loadPageDone() {
+		contentView.activityIndicator.stopAnimating()
 	}
 }
