@@ -32,6 +32,10 @@ class LoginViewController: UIViewController {
 		super.viewDidLoad()
 		setupUI()
 	}
+	
+	deinit {
+		print("Login dismiss")
+	}
 }
 
 // MARK: - Actions

@@ -21,6 +21,10 @@
 		5BA956492C66048B0065C9C2 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956482C66048B0065C9C2 /* AuthViewController.swift */; };
 		5BA9564B2C66499F0065C9C2 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9564A2C66499F0065C9C2 /* AuthView.swift */; };
 		5BA9564D2C6659250065C9C2 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9564C2C6659250065C9C2 /* AuthPresenter.swift */; };
+		5BA956522C678DD50065C9C2 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956512C678DD50065C9C2 /* AuthRouter.swift */; };
+		5BA956542C67901C0065C9C2 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956532C67901C0065C9C2 /* KeychainService.swift */; };
+		5BA956572C67930B0065C9C2 /* GalleryViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956562C67930B0065C9C2 /* GalleryViewControllerViewController.swift */; };
+		5BA9565B2C67A34B0065C9C2 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9565A2C67A34B0065C9C2 /* AuthService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		5BA956482C66048B0065C9C2 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		5BA9564A2C66499F0065C9C2 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		5BA9564C2C6659250065C9C2 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		5BA956512C678DD50065C9C2 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
+		5BA956532C67901C0065C9C2 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		5BA956562C67930B0065C9C2 /* GalleryViewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewControllerViewController.swift; sourceTree = "<group>"; };
+		5BA9565A2C67A34B0065C9C2 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,8 +121,9 @@
 		5BA956342C65E9D90065C9C2 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				5BA956472C6604100065C9C2 /* Authentication */,
 				5BA956362C65EA3F0065C9C2 /* Login */,
+				5BA956472C6604100065C9C2 /* Authentication */,
+				5BA956552C6792DC0065C9C2 /* Gallery */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -122,6 +131,8 @@
 		5BA956352C65E9E90065C9C2 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				5BA956532C67901C0065C9C2 /* KeychainService.swift */,
+				5BA9565A2C67A34B0065C9C2 /* AuthService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -144,6 +155,7 @@
 				5BA956482C66048B0065C9C2 /* AuthViewController.swift */,
 				5BA9564A2C66499F0065C9C2 /* AuthView.swift */,
 				5BA9564C2C6659250065C9C2 /* AuthPresenter.swift */,
+				5BA956512C678DD50065C9C2 /* AuthRouter.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -153,6 +165,14 @@
 			children = (
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		5BA956552C6792DC0065C9C2 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				5BA956562C67930B0065C9C2 /* GalleryViewControllerViewController.swift */,
+			);
+			path = Gallery;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,14 +245,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BA9565B2C67A34B0065C9C2 /* AuthService.swift in Sources */,
 				5BA956492C66048B0065C9C2 /* AuthViewController.swift in Sources */,
 				5BA956422C65ED8C0065C9C2 /* LoginPresenter.swift in Sources */,
 				5BA956382C65EA630065C9C2 /* Sizes.swift in Sources */,
 				5BA9563E2C65ED690065C9C2 /* LoginAssembly.swift in Sources */,
 				5BA9564D2C6659250065C9C2 /* AuthPresenter.swift in Sources */,
+				5BA956542C67901C0065C9C2 /* KeychainService.swift in Sources */,
+				5BA956572C67930B0065C9C2 /* GalleryViewControllerViewController.swift in Sources */,
 				5BA956442C65F0670065C9C2 /* LoginView.swift in Sources */,
 				5BA956222C65E7730065C9C2 /* LoginViewController.swift in Sources */,
 				5BA9563A2C65EA730065C9C2 /* Strings.swift in Sources */,
+				5BA956522C678DD50065C9C2 /* AuthRouter.swift in Sources */,
 				5BA9561E2C65E7730065C9C2 /* AppDelegate.swift in Sources */,
 				5BA956402C65ED7C0065C9C2 /* LoginRouter.swift in Sources */,
 				5BA9564B2C66499F0065C9C2 /* AuthView.swift in Sources */,

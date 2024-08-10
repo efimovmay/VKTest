@@ -9,7 +9,6 @@ import UIKit
 
 protocol ILoginRouter {
 	func routeToAuthView()
-	func routeToGalleryView()
 }
 
 final class LoginRouter: ILoginRouter {
@@ -22,14 +21,9 @@ final class LoginRouter: ILoginRouter {
 	}
 	
 	func routeToAuthView() {
-		navigationController.present(AuthViewController(presenter: AuthPresenter()), animated: true)
+		let router = AuthRouter(navigationController: navigationController)
+		let presenter = AuthPresenter(router: router)
+		let viewController = AuthViewController(presenter: presenter)
+		navigationController.present(viewController, animated: true)
 	}
-	
-	func routeToGalleryView() {
-		
-	}
-}
-
-private extension LoginRouter {
-
 }

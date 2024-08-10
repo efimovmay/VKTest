@@ -16,13 +16,13 @@ final class AuthPresenter: NSObject, IAuthPresenter {
 	// MARK: - Dependencies
 	
 	private weak var view: IAuthView?
-	//	private let router: ILoginRouter
-	//
-	//	// MARK: - Initialization
-	//
-	//	init(router: ILoginRouter) {
-	//		self.router = router
-	//	}
+	private let router: IAuthRouter
+	
+	// MARK: - Initialization
+	
+	init(router: IAuthRouter) {
+		self.router = router
+	}
 	
 	func viewIsReady(view: IAuthView) {
 		self.view = view
@@ -49,6 +49,12 @@ final class AuthPresenter: NSObject, IAuthPresenter {
 	}
 }
 
+private extension AuthPresenter {
+	func routeToGallery() {
+		router.routeToGalleryView()
+	}
+}
+
 extension AuthPresenter: WKNavigationDelegate {
 	func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
 		guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment else {
@@ -69,6 +75,7 @@ extension AuthPresenter: WKNavigationDelegate {
 			print(userId)
 			print(token)
 			print(exp)
+			routeToGallery()
 		}
 		decisionHandler(.cancel)
 	}
