@@ -30,6 +30,12 @@
 		5BA956642C6805740065C9C2 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956632C6805740065C9C2 /* HTTPMethod.swift */; };
 		5BA956662C68057C0065C9C2 /* NetworkEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956652C68057B0065C9C2 /* NetworkEndpoints.swift */; };
 		5BA956682C6806030065C9C2 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956672C6806030065C9C2 /* URLRequestBuilder.swift */; };
+		5BA9566A2C68C5D70065C9C2 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956692C68C5D70065C9C2 /* AuthError.swift */; };
+		5BA9566C2C68F7DE0065C9C2 /* GalleryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9566B2C68F7DE0065C9C2 /* GalleryPresenter.swift */; };
+		5BA9566E2C68F86C0065C9C2 /* GalleryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9566D2C68F86B0065C9C2 /* GalleryRouter.swift */; };
+		5BA956702C69013E0065C9C2 /* GalleryAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9566F2C69013E0065C9C2 /* GalleryAssembly.swift */; };
+		5BA956722C6901A10065C9C2 /* AuthAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956712C6901A10065C9C2 /* AuthAssembly.swift */; };
+		5BA956742C6905110065C9C2 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956732C6905110065C9C2 /* GalleryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +64,12 @@
 		5BA956632C6805740065C9C2 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		5BA956652C68057B0065C9C2 /* NetworkEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkEndpoints.swift; sourceTree = "<group>"; };
 		5BA956672C6806030065C9C2 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
+		5BA956692C68C5D70065C9C2 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		5BA9566B2C68F7DE0065C9C2 /* GalleryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPresenter.swift; sourceTree = "<group>"; };
+		5BA9566D2C68F86B0065C9C2 /* GalleryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryRouter.swift; sourceTree = "<group>"; };
+		5BA9566F2C69013E0065C9C2 /* GalleryAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryAssembly.swift; sourceTree = "<group>"; };
+		5BA956712C6901A10065C9C2 /* AuthAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAssembly.swift; sourceTree = "<group>"; };
+		5BA956732C6905110065C9C2 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +178,8 @@
 				5BA9564A2C66499F0065C9C2 /* AuthView.swift */,
 				5BA9564C2C6659250065C9C2 /* AuthPresenter.swift */,
 				5BA956512C678DD50065C9C2 /* AuthRouter.swift */,
+				5BA956692C68C5D70065C9C2 /* AuthError.swift */,
+				5BA956712C6901A10065C9C2 /* AuthAssembly.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -181,6 +195,10 @@
 			isa = PBXGroup;
 			children = (
 				5BA956562C67930B0065C9C2 /* GalleryViewControllerViewController.swift */,
+				5BA9566B2C68F7DE0065C9C2 /* GalleryPresenter.swift */,
+				5BA9566D2C68F86B0065C9C2 /* GalleryRouter.swift */,
+				5BA9566F2C69013E0065C9C2 /* GalleryAssembly.swift */,
+				5BA956732C6905110065C9C2 /* GalleryView.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -276,19 +294,25 @@
 				5BA9564D2C6659250065C9C2 /* AuthPresenter.swift in Sources */,
 				5BA956662C68057C0065C9C2 /* NetworkEndpoints.swift in Sources */,
 				5BA956542C67901C0065C9C2 /* KeychainService.swift in Sources */,
+				5BA9566C2C68F7DE0065C9C2 /* GalleryPresenter.swift in Sources */,
 				5BA956642C6805740065C9C2 /* HTTPMethod.swift in Sources */,
 				5BA956572C67930B0065C9C2 /* GalleryViewControllerViewController.swift in Sources */,
 				5BA956682C6806030065C9C2 /* URLRequestBuilder.swift in Sources */,
 				5BA956442C65F0670065C9C2 /* LoginView.swift in Sources */,
 				5BA956622C68056F0065C9C2 /* NetworkRequest.swift in Sources */,
 				5BA956222C65E7730065C9C2 /* LoginViewController.swift in Sources */,
+				5BA9566E2C68F86C0065C9C2 /* GalleryRouter.swift in Sources */,
 				5BA9563A2C65EA730065C9C2 /* Strings.swift in Sources */,
 				5BA956522C678DD50065C9C2 /* AuthRouter.swift in Sources */,
+				5BA9566A2C68C5D70065C9C2 /* AuthError.swift in Sources */,
 				5BA9561E2C65E7730065C9C2 /* AppDelegate.swift in Sources */,
 				5BA956402C65ED7C0065C9C2 /* LoginRouter.swift in Sources */,
+				5BA956702C69013E0065C9C2 /* GalleryAssembly.swift in Sources */,
 				5BA956602C6805640065C9C2 /* NetworkError.swift in Sources */,
 				5BA9564B2C66499F0065C9C2 /* AuthView.swift in Sources */,
 				5BA956202C65E7730065C9C2 /* SceneDelegate.swift in Sources */,
+				5BA956742C6905110065C9C2 /* GalleryView.swift in Sources */,
+				5BA956722C6901A10065C9C2 /* AuthAssembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

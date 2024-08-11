@@ -12,6 +12,7 @@ enum NetworkEndpoints {
 	static let clientId = "52125494"
 	
 	case authorize
+	case blank
 }
 
 extension NetworkEndpoints: CustomStringConvertible {
@@ -19,6 +20,8 @@ extension NetworkEndpoints: CustomStringConvertible {
 		switch self {
 		case .authorize:
 			"/authorize"
+		case .blank:
+			"/blank.html"
 		}
 	}
 }

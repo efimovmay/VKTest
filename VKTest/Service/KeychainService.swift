@@ -8,26 +8,32 @@
 import Foundation
 
 struct KeychainService {
-	let service: String
+	
 	let account: String
 	
-	func save(item: String) -> Bool {
-		guard let itemData = item.data(using: .utf8) else { return false }
+	@discardableResult
+	func saveToken(token: String) -> Bool {
+		guard let tokenData = token.data(using: .utf8) else { return false }
 		let keychainItem = [
-			kSecAttrService: service,
 			kSecAttrAccount: account,
-			kSecValueData: itemData,
+			kSecValueData: tokenData,
 			kSecAttrAccessible: kSecAttrAccessibleWhenUnlocked,
 			kSecClass: kSecClassGenericPassword
 		] as CFDictionary
 		
-		let status = SecItemAdd(keychainItem, nil)
-		return status == errSecSuccess
+		let status = SecItemCopyMatching(keychainItem as CFDictionary, nil)
+		if status == errSecSuccess {
+			let attributesToUpdate: [String: Any] = [kSecValueData as String: tokenData]
+			let updateStatus = SecItemUpdate(keychainItem as CFDictionary, attributesToUpdate as CFDictionary)
+			return updateStatus == errSecSuccess
+		} else {
+			let addStatus = SecItemAdd(keychainItem as CFDictionary, nil)
+			return addStatus == errSecSuccess
+		}
 	}
 	
-	func get() -> String? {
+	func getToken() -> String? {
 		let query = [
-			kSecAttrService: service,
 			kSecAttrAccount: account,
 			kSecReturnData: true,
 			kSecClass: kSecClassGenericPassword,
@@ -44,31 +50,14 @@ struct KeychainService {
 		}
 	}
 	
-	func delete() -> Bool {
+	@discardableResult
+	func deleteToken() -> Bool {
 		let query = [
-			kSecAttrService: service,
 			kSecAttrAccount: account,
 			kSecClass: kSecClassGenericPassword
 		] as CFDictionary
 		
 		let status = SecItemDelete(query)
-		return status == errSecSuccess
-	}
-	
-	func update(item: String) -> Bool {
-		guard let itemData = item.data(using: .utf8) else { return false }
-		
-		let query = [
-			kSecAttrService: service,
-			kSecAttrAccount: account,
-			kSecClass: kSecClassGenericPassword
-		] as CFDictionary
-		
-		let field = [
-			kSecValueData: itemData
-		] as CFDictionary
-		
-		let status = SecItemUpdate(query, field)
 		return status == errSecSuccess
 	}
 }

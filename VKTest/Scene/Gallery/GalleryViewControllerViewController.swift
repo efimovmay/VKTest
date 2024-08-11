@@ -9,13 +9,38 @@
 import UIKit
 
 protocol IGalleryView: AnyObject {
-
+	
 }
 
 class GalleryViewController: UIViewController {
+	
+	private let presenter: IGalleryPresenter
+	private lazy var contentView = AuthView()
+	
+	init(presenter: IGalleryPresenter) {
+		self.presenter = presenter
+		super.init(nibName: nil, bundle: nil)
+	}
+	
+	@available(*, unavailable)
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
+	override func viewDidLoad(){
+		super.viewDidLoad()
+		presenter.viewIsReady(view: self)
+		setupUI()
+	}
+}
 
-  override func viewDidLoad(){
-    super.viewDidLoad()
-	  view.backgroundColor = .red
-  }
+private extension GalleryViewController {
+	func setupUI() {
+	
+	}
+}
+
+
+extension GalleryViewController: IGalleryView {
+	
 }

@@ -26,17 +26,17 @@ extension NetworkServiceError: LocalizedError {
 	var errorDescription: String? {
 		switch self {
 		case .invalidURL:
-			return L10n.networkError.invalidURL
+			return L10n.NetworkError.invalidURL
 		case .networkError:
-			return L10n.networkError.networkError
+			return L10n.NetworkError.networkError
 		case .invalidResponse:
-			return L10n.networkError.invalidResponse
+			return L10n.NetworkError.invalidResponse
 		case .invalidStatusCode(let code):
-			return "\(L10n.networkError.invalidStatusCode) (\(code))"
+			return "\(L10n.NetworkError.invalidStatusCode) (\(code))"
 		case .noData:
-			return L10n.networkError.noData
+			return L10n.NetworkError.noData
 		case .failedToDecodeResponse:
-			return L10n.networkError.failedToDecodeResponse
+			return L10n.NetworkError.failedToDecodeResponse
 		}
 	}
 }

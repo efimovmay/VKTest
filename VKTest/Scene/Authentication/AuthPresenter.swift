@@ -34,19 +34,11 @@ final class AuthPresenter: NSObject, IAuthPresenter {
 	}
 }
 
-private extension AuthPresenter {
-	func loadWebPage() {
-		
-	}
-	
-	func routeToGallery() {
-		router.routeToGalleryView()
-	}
-}
-
 extension AuthPresenter: WKNavigationDelegate {
 	func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-		guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment else {
+		guard let url = navigationResponse.response.url,
+			  url.path == NetworkEndpoints.blank.description,
+			  let fragment = url.fragment else {
 			decisionHandler(.allow)
 			return
 		}
@@ -60,11 +52,8 @@ extension AuthPresenter: WKNavigationDelegate {
 				return dict
 			}
 		
-		if let userId = params["user_id"], let token = params["access_token"], let exp = params["expires_in"] {
-			print(userId)
-			print(token)
-			print(exp)
-			routeToGallery()
+		if let userId = params["user_id"], let token = params["access_token"] {
+			router.routeToGalleryView(userId: userId, token: token)
 		}
 		decisionHandler(.cancel)
 	}
@@ -74,6 +63,6 @@ extension AuthPresenter: WKNavigationDelegate {
 	}
 	
 	func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-		debugPrint("didFail")
+		router.showAlert(with: AuthError.webLoadFail.errorDescription)
 	}
 }

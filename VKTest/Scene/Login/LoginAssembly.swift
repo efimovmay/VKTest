@@ -8,13 +8,9 @@
 import UIKit
 
 enum LoginAssembly {
-	
-	struct Dependencies {
-		let navigationController: UINavigationController
-	}
-	
-	static func makeModule(dependencies: Dependencies) -> UIViewController {
-		let router = LoginRouter(navigationController: dependencies.navigationController)
+
+	static func makeModule(navigationController: UINavigationController) -> UIViewController {
+		let router = LoginRouter(navigationController: navigationController)
 		let presenter = LoginPresenter(router: router)
 		let viewController = LoginViewController(presenter: presenter)
 		
