@@ -26,30 +26,19 @@ final class AuthPresenter: NSObject, IAuthPresenter {
 	
 	func viewIsReady(view: IAuthView) {
 		self.view = view
-		guard let request = constructAuthUrl() else { return }
+		guard let request = URLRequestBuilder(baseUrl: NetworkEndpoints.authBaseURL).build(
+			forRequest: NetworkRequestAuth(),
+			token: nil
+		) else { return }
 		view.loadWebView(request: request)
-	}
-	
-	func constructAuthUrl() -> URLRequest? {
-		guard var components = URLComponents(string: "https://oauth.vk.com") else { return nil }
-		
-		components.path = "/authorize"
-		let queryItems: [String : String] = [
-			"client_id" : "52125494",
-			"redirect_uri" : "https://oauth.vk.com/blank.html",
-			"display" : "mobile",
-			"response_type" : "token"
-		]
-		components.queryItems = queryItems.map({ URLQueryItem(name: $0.key, value: $0.value )})
-		
-		guard let url = components.url else { return nil }
-		let request = URLRequest(url: url)
-		
-		return request
 	}
 }
 
 private extension AuthPresenter {
+	func loadWebPage() {
+		
+	}
+	
 	func routeToGallery() {
 		router.routeToGalleryView()
 	}

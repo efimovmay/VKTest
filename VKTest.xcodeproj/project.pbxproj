@@ -24,7 +24,12 @@
 		5BA956522C678DD50065C9C2 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956512C678DD50065C9C2 /* AuthRouter.swift */; };
 		5BA956542C67901C0065C9C2 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956532C67901C0065C9C2 /* KeychainService.swift */; };
 		5BA956572C67930B0065C9C2 /* GalleryViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956562C67930B0065C9C2 /* GalleryViewControllerViewController.swift */; };
-		5BA9565B2C67A34B0065C9C2 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9565A2C67A34B0065C9C2 /* AuthService.swift */; };
+		5BA9565E2C6805240065C9C2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9565D2C6805240065C9C2 /* NetworkService.swift */; };
+		5BA956602C6805640065C9C2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9565F2C6805640065C9C2 /* NetworkError.swift */; };
+		5BA956622C68056F0065C9C2 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956612C68056F0065C9C2 /* NetworkRequest.swift */; };
+		5BA956642C6805740065C9C2 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956632C6805740065C9C2 /* HTTPMethod.swift */; };
+		5BA956662C68057C0065C9C2 /* NetworkEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956652C68057B0065C9C2 /* NetworkEndpoints.swift */; };
+		5BA956682C6806030065C9C2 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956672C6806030065C9C2 /* URLRequestBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +52,12 @@
 		5BA956512C678DD50065C9C2 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		5BA956532C67901C0065C9C2 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		5BA956562C67930B0065C9C2 /* GalleryViewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewControllerViewController.swift; sourceTree = "<group>"; };
-		5BA9565A2C67A34B0065C9C2 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		5BA9565D2C6805240065C9C2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		5BA9565F2C6805640065C9C2 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		5BA956612C68056F0065C9C2 /* NetworkRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		5BA956632C6805740065C9C2 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		5BA956652C68057B0065C9C2 /* NetworkEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkEndpoints.swift; sourceTree = "<group>"; };
+		5BA956672C6806030065C9C2 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,8 +141,8 @@
 		5BA956352C65E9E90065C9C2 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				5BA9565C2C68050A0065C9C2 /* Network */,
 				5BA956532C67901C0065C9C2 /* KeychainService.swift */,
-				5BA9565A2C67A34B0065C9C2 /* AuthService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -173,6 +183,19 @@
 				5BA956562C67930B0065C9C2 /* GalleryViewControllerViewController.swift */,
 			);
 			path = Gallery;
+			sourceTree = "<group>";
+		};
+		5BA9565C2C68050A0065C9C2 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5BA9565F2C6805640065C9C2 /* NetworkError.swift */,
+				5BA956652C68057B0065C9C2 /* NetworkEndpoints.swift */,
+				5BA956612C68056F0065C9C2 /* NetworkRequest.swift */,
+				5BA956632C6805740065C9C2 /* HTTPMethod.swift */,
+				5BA9565D2C6805240065C9C2 /* NetworkService.swift */,
+				5BA956672C6806030065C9C2 /* URLRequestBuilder.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,20 +268,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BA9565B2C67A34B0065C9C2 /* AuthService.swift in Sources */,
 				5BA956492C66048B0065C9C2 /* AuthViewController.swift in Sources */,
 				5BA956422C65ED8C0065C9C2 /* LoginPresenter.swift in Sources */,
 				5BA956382C65EA630065C9C2 /* Sizes.swift in Sources */,
 				5BA9563E2C65ED690065C9C2 /* LoginAssembly.swift in Sources */,
+				5BA9565E2C6805240065C9C2 /* NetworkService.swift in Sources */,
 				5BA9564D2C6659250065C9C2 /* AuthPresenter.swift in Sources */,
+				5BA956662C68057C0065C9C2 /* NetworkEndpoints.swift in Sources */,
 				5BA956542C67901C0065C9C2 /* KeychainService.swift in Sources */,
+				5BA956642C6805740065C9C2 /* HTTPMethod.swift in Sources */,
 				5BA956572C67930B0065C9C2 /* GalleryViewControllerViewController.swift in Sources */,
+				5BA956682C6806030065C9C2 /* URLRequestBuilder.swift in Sources */,
 				5BA956442C65F0670065C9C2 /* LoginView.swift in Sources */,
+				5BA956622C68056F0065C9C2 /* NetworkRequest.swift in Sources */,
 				5BA956222C65E7730065C9C2 /* LoginViewController.swift in Sources */,
 				5BA9563A2C65EA730065C9C2 /* Strings.swift in Sources */,
 				5BA956522C678DD50065C9C2 /* AuthRouter.swift in Sources */,
 				5BA9561E2C65E7730065C9C2 /* AppDelegate.swift in Sources */,
 				5BA956402C65ED7C0065C9C2 /* LoginRouter.swift in Sources */,
+				5BA956602C6805640065C9C2 /* NetworkError.swift in Sources */,
 				5BA9564B2C66499F0065C9C2 /* AuthView.swift in Sources */,
 				5BA956202C65E7730065C9C2 /* SceneDelegate.swift in Sources */,
 			);
