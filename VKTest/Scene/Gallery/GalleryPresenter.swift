@@ -8,9 +8,18 @@
 import Foundation
 
 protocol IGalleryPresenter {
-	func getCountFotos() -> Int
-	func fotoDidSelect(at index: Int)
 	func viewIsReady(view: IGalleryView)
+	
+	func getCountFotos() -> Int
+	func getFoto(at index: Int) -> GalleryViewModel.Foto
+	func fotoDidSelect(at index: Int)
+	
+	func getCountVideo() -> Int
+	func getVideo(at index: Int) -> GalleryViewModel.Video
+	func videoDidSelect(at index: Int)
+	
+	func fetchFoto()
+	
 }
 
 final class GalleryPresenter: IGalleryPresenter {
@@ -22,6 +31,7 @@ final class GalleryPresenter: IGalleryPresenter {
 	
 	private var fotos: [GalleryViewModel.Foto] = .init()
 	private var videos: [GalleryViewModel.Video] = .init()
+	private var maxCount: Int?
 	
 	init(router: IGalleryRouter, network: INetworkService, keychain: KeychainService) {
 		self.router = router
@@ -31,7 +41,8 @@ final class GalleryPresenter: IGalleryPresenter {
 	
 	func viewIsReady(view: IGalleryView) {
 		self.view = view
-		fetchData()
+		fetchFoto()
+		fetchVideo()
 	}
 	
 	func logout() {
@@ -42,41 +53,98 @@ final class GalleryPresenter: IGalleryPresenter {
 
 extension GalleryPresenter {
 	func getCountFotos() -> Int {
-		fotos.count
+		return fotos.count
+	}
+	
+	func getFoto(at index: Int) -> GalleryViewModel.Foto {
+		return fotos[index]
 	}
 	
 	func fotoDidSelect(at index: Int) {
 		
 	}
+	
+	func getCountVideo() -> Int {
+		return videos.count
+	}
+	func getVideo(at index: Int) -> GalleryViewModel.Video {
+		return videos[index]
+	}
+	
+	func videoDidSelect(at index: Int) {
+		
+	}
+	
+	func fetchFoto() {
+		guard maxCount != fotos.count else { return }
+		network.fetch(
+			dataType: FotoDTO.self,
+			with: NetworkRequestFotosAll(offset: fotos.count),
+			token: keychain.getToken()
+		) { [weak self] result in
+			switch result {
+			case .success(let fotoDTO):
+				self?.parsingFoto(from: fotoDTO)
+			case .failure(let error):
+				DispatchQueue.main.async {
+					self?.router.showAlert(with: error.localizedDescription)
+				}
+			}
+		}
+	}
 }
 
 private extension GalleryPresenter {
-	func fetchData() {
-		guard let token = keychain.getToken() else { return }
-		network.fetch(dataType: FotoDTO.self, with: NetworkRequestFotos(token: token)) { [weak self] result in
+
+	func fetchVideo() {
+		network.fetch(
+			dataType: VideoDTO.self,
+			with: NetworkRequestVideos(),
+			token: keychain.getToken()
+		) { [weak self] result in
 			switch result {
-			case .success(let data):
-				self?.parsingFoto(data: data)
+			case .success(let videoDTO):
+				self?.parsingVideo(from: videoDTO)
 			case .failure(let error):
-				self?.router.showAlert(with: error.localizedDescription)
+				DispatchQueue.main.async {
+					self?.router.showAlert(with: error.localizedDescription)
+				}
 			}
 		}
 	}
 	
-	func parsingFoto(data: FotoDTO) {
-		data.response.items.forEach { item in
+	func parsingFoto(from model: FotoDTO) {
+		maxCount = model.response.count
+		model.response.items.forEach { item in
 			fotos.append(GalleryViewModel.Foto(
 				data: item.date,
 				urlPrev: item.sizes[4].url,
 				urlOrig: item.origPhoto.url
 			))
 		}
-		reloadCollection()
+		reloadFotoCollection()
 	}
 	
-	func reloadCollection() {
+	func parsingVideo(from model: VideoDTO) {
+		model.response.items.forEach { item in
+			videos.append(GalleryViewModel.Video(
+				title: item.title,
+				urlPrev: item.image[3].url,
+				urlVideo: item.player
+			))
+		}
+		reloadVideoCollection()
+	}
+	
+	func reloadFotoCollection() {
 		DispatchQueue.main.async {
 			self.view?.reloadFotoCollection()
+		}
+	}
+	
+	func reloadVideoCollection() {
+		DispatchQueue.main.async {
+			self.view?.reloadVideoCollection()
 		}
 	}
 }

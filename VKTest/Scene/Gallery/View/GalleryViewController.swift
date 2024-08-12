@@ -10,6 +10,7 @@ import UIKit
 
 protocol IGalleryView: AnyObject {
 	func reloadFotoCollection()
+	func reloadVideoCollection()
 }
 
 class GalleryViewController: UIViewController {
@@ -49,12 +50,11 @@ private extension GalleryViewController {
 	
 	func switchState(toShowVideo: Bool) {
 		if toShowVideo {
-//			interactor?.needConvertText(text: textViewEditor.text)
-//			textViewEditor.isHidden = true
-//			textViewPreview.isHidden = false
+			contentView.fotoCollectionView.isHidden = true
+			contentView.videoCollectionView.isHidden = false
 		} else {
-//			textViewEditor.isHidden = false
-//			textViewPreview.isHidden = true
+			contentView.videoCollectionView.isHidden = true
+			contentView.fotoCollectionView.isHidden = false
 		}
 	}
 }
@@ -71,36 +71,77 @@ private extension GalleryViewController {
 		)
 		
 		contentView.segmentControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
+		
 		contentView.fotoCollectionView.dataSource = self
+		contentView.fotoCollectionView.delegate = self
+		
+		contentView.videoCollectionView.dataSource = self
+		contentView.videoCollectionView.delegate = self
 	}
 }
 
 extension GalleryViewController: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		presenter.getCountFotos()
+		switch collectionView.tag {
+		case 1:
+			presenter.getCountFotos()
+		default:
+			presenter.getCountVideo()
+		}
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		guard let cell = collectionView.dequeueReusableCell(
-			withReuseIdentifier: FotoViewCell.identifier,
-			for: indexPath
-		) as? FotoViewCell else {
-			return UICollectionViewCell()
+		switch collectionView.tag {
+		case 1:
+			guard let cell = collectionView.dequeueReusableCell(
+				withReuseIdentifier: FotoViewCell.identifier,
+				for: indexPath
+			) as? FotoViewCell else {
+				return UICollectionViewCell()
+			}
+			let fotoData = presenter.getFoto(at: indexPath.item)
+			cell.configure(imageUrl: fotoData.urlPrev)
+			
+			return cell
+		default:
+			guard let cell = collectionView.dequeueReusableCell(
+				withReuseIdentifier: VideoViewCell.identifier,
+				for: indexPath
+			) as? VideoViewCell else {
+				return UICollectionViewCell()
+			}
+			let videoData = presenter.getVideo(at: indexPath.item)
+			cell.configure(imageUrl: videoData.urlPrev, title: videoData.title)
+			
+			return cell
 		}
-		cell.fotoImageView.image = .checkmark
-		
-		return cell
 	}
 }
 
 extension GalleryViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		presenter.fotoDidSelect(at: indexPath.item)
+		switch collectionView.tag {
+		case 1:
+			presenter.fotoDidSelect(at: indexPath.item)
+		default:
+			presenter.videoDidSelect(at: indexPath.item)
+		}
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+		if collectionView.tag == 1,
+		   presenter.getCountFotos() > 0,
+		   indexPath.item == presenter.getCountFotos() - 4 {
+			presenter.fetchFoto()
+		}
 	}
 }
 
 extension GalleryViewController: IGalleryView {
 	func reloadFotoCollection() {
 		contentView.fotoCollectionView.reloadData()
+	}
+	func reloadVideoCollection() {
+		contentView.videoCollectionView.reloadData()
 	}
 }

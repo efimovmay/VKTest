@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class FotoViewCell: UICollectionViewCell {
 	
@@ -31,8 +32,8 @@ final class FotoViewCell: UICollectionViewCell {
 		fotoImageView.image = nil
 	}
 	
-	func configure(image: String) {
-
+	func configure(imageUrl: String) {
+		fotoImageView.kf.setImage(with: URL(string: imageUrl))
 	}
 }
 
@@ -53,7 +54,6 @@ private extension FotoViewCell {
 	
 	func makeImageView() -> UIImageView {
 		let image = UIImageView()
-		image.layer.cornerRadius = Sizes.cornerRadius
 		image.contentMode = .scaleAspectFill
 		image.tintColor = .gray
 		image.clipsToBounds = true

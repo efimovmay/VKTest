@@ -10,6 +10,7 @@ import UIKit
 final class GalleryView: UIView {
 	lazy var segmentControl = makeSegmentControl()
 	lazy var fotoCollectionView: UICollectionView = makeFotoCollectionView()
+	lazy var videoCollectionView: UICollectionView = makeVideoCollectionView()
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -31,6 +32,7 @@ private extension GalleryView {
 	func setupLayout() {
 		addSubview(segmentControl)
 		addSubview(fotoCollectionView)
+		addSubview(videoCollectionView)
 		
 		NSLayoutConstraint.activate([
 			segmentControl.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Sizes.Padding.half),
@@ -42,6 +44,11 @@ private extension GalleryView {
 			fotoCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
 			fotoCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
 			fotoCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+			
+			videoCollectionView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: Sizes.Padding.half),
+			videoCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+			videoCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+			videoCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
 		])
 	}
 	
@@ -57,11 +64,12 @@ private extension GalleryView {
 	
 	func makeFotoCollectionView() -> UICollectionView {
 		let collection = UICollectionView(frame: .zero, collectionViewLayout: createFotosCollectionLayout())
+		collection.tag = 1
+		collection.isHidden = false
 		collection.register(
 			FotoViewCell.self,
 			forCellWithReuseIdentifier: FotoViewCell.identifier
 		)
-		//		collection.backgroundColor = .clear
 		collection.translatesAutoresizingMaskIntoConstraints = false
 		
 		return collection
@@ -80,6 +88,39 @@ private extension GalleryView {
 		)
 		let groupe = NSCollectionLayoutGroup.horizontal(layoutSize: groupeSize, subitem: item, count: 2)
 		groupe.interItemSpacing = .fixed(4)
+		
+		let section = NSCollectionLayoutSection(group: groupe)
+		section.interGroupSpacing = 4
+		
+		let layout = UICollectionViewCompositionalLayout(section: section)
+		return layout
+	}
+	
+	func makeVideoCollectionView() -> UICollectionView {
+		let collection = UICollectionView(frame: .zero, collectionViewLayout: createVideoCollectionLayout())
+		collection.tag = 2
+		collection.isHidden = true
+		collection.register(
+			VideoViewCell.self,
+			forCellWithReuseIdentifier: VideoViewCell.identifier
+		)
+		collection.translatesAutoresizingMaskIntoConstraints = false
+		
+		return collection
+	}
+	
+	func createVideoCollectionLayout() -> UICollectionViewLayout {
+		let sizeItem = NSCollectionLayoutSize(
+			widthDimension: .fractionalWidth(1.0),
+			heightDimension: .fractionalHeight(1.0)
+		)
+		let item = NSCollectionLayoutItem(layoutSize: sizeItem)
+		
+		let groupeSize = NSCollectionLayoutSize(
+			widthDimension: .fractionalWidth(1.0),
+			heightDimension: .fractionalWidth(0.56)
+		)
+		let groupe = NSCollectionLayoutGroup.horizontal(layoutSize: groupeSize, subitem: item, count: 1)
 		
 		let section = NSCollectionLayoutSection(group: groupe)
 		section.interGroupSpacing = 4

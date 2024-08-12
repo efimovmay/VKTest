@@ -12,12 +12,9 @@ protocol ILoginPresenter {
 }
 
 final class LoginPresenter: ILoginPresenter {
-	// MARK: - Dependencies
 	
 	private weak var view: LoginViewController?
 	private let router: ILoginRouter
-	
-	// MARK: - Initialization
 	
 	init(router: ILoginRouter) {
 		self.router = router

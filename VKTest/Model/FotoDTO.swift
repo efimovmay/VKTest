@@ -11,6 +11,7 @@ struct FotoDTO: Decodable {
 	let response: Response
 	
 	struct Response: Decodable {
+		let count: Int
 		let items: [Item]
 	}
 	

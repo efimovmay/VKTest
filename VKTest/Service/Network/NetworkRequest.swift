@@ -27,12 +27,25 @@ struct NetworkRequestFotos: INetworkRequest {
 	let method = HTTPMethod.get
 	let parameters: [String : String]
 	
-	init(token: String) {
+	init() {
 		parameters = [
 			"owner_id" : "-128666765",
 			"album_id" : "266276915",
-			"access_token" : token,
 			"rev" : "0",
+			"v" : "5.199"
+		]
+	}
+}
+
+struct NetworkRequestFotosAll: INetworkRequest {
+	let path = NetworkEndpoints.fotoGetAll.description
+	let method = HTTPMethod.get
+	let parameters: [String : String]
+	
+	init(offset: Int) {
+		parameters = [
+			"owner_id" : "-128666765",
+			"offset" : String(offset),
 			"v" : "5.199"
 		]
 	}
@@ -43,10 +56,10 @@ struct NetworkRequestVideos: INetworkRequest {
 	let method = HTTPMethod.get
 	let parameters: [String : String]
 	
-	init(offset: Int) {
+	init() {
 		parameters = [
 			"owner_id" : "-128666765",
-			"v" : "5.199"
+			"v" : "5.199",
 		]
 	}
 }
@@ -59,6 +72,7 @@ struct NetworkRequestAuth: INetworkRequest {
 	init() {
 		parameters = [
 			"client_id" : NetworkEndpoints.clientId,
+			"scope" : "photos, video",
 			"redirect_uri" : "https://oauth.vk.com/blank.html",
 			"display" : "mobile",
 			"response_type" : "token"

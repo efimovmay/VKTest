@@ -13,12 +13,9 @@ protocol IAuthPresenter: AnyObject, WKNavigationDelegate {
 }
 
 final class AuthPresenter: NSObject, IAuthPresenter {
-	// MARK: - Dependencies
 	
 	private weak var view: IAuthView?
 	private let router: IAuthRouter
-	
-	// MARK: - Initialization
 	
 	init(router: IAuthRouter) {
 		self.router = router
@@ -27,7 +24,8 @@ final class AuthPresenter: NSObject, IAuthPresenter {
 	func viewIsReady(view: IAuthView) {
 		self.view = view
 		guard let request = URLRequestBuilder(baseUrl: NetworkEndpoints.authBaseURL).build(
-			forRequest: NetworkRequestAuth()
+			forRequest: NetworkRequestAuth(),
+			token: nil
 		) else { return }
 		view.loadWebView(request: request)
 	}
@@ -52,7 +50,6 @@ extension AuthPresenter: WKNavigationDelegate {
 			}
 		
 		if let userId = params["user_id"], let token = params["access_token"] {
-			print(userId)
 			router.routeToGalleryView(userId: userId, token: token)
 		}
 		decisionHandler(.cancel)

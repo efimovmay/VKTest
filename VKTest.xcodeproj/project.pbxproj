@@ -39,6 +39,9 @@
 		5BA956762C694E4C0065C9C2 /* FotoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956752C694E4C0065C9C2 /* FotoDTO.swift */; };
 		5BA956782C6A0DA60065C9C2 /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956772C6A0DA60065C9C2 /* GalleryViewModel.swift */; };
 		5BA9567A2C6A0F9F0065C9C2 /* FotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956792C6A0F9F0065C9C2 /* FotoCell.swift */; };
+		5BA9567E2C6A2E610065C9C2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5BA9567D2C6A2E610065C9C2 /* Kingfisher */; };
+		5BA956802C6A49DB0065C9C2 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9567F2C6A49DB0065C9C2 /* VideoCell.swift */; };
+		5BA956822C6A4F6C0065C9C2 /* VideoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956812C6A4F6C0065C9C2 /* VideoDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +79,8 @@
 		5BA956752C694E4C0065C9C2 /* FotoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotoDTO.swift; sourceTree = "<group>"; };
 		5BA956772C6A0DA60065C9C2 /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
 		5BA956792C6A0F9F0065C9C2 /* FotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotoCell.swift; sourceTree = "<group>"; };
+		5BA9567F2C6A49DB0065C9C2 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
+		5BA956812C6A4F6C0065C9C2 /* VideoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BA9567E2C6A2E610065C9C2 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				5BA956752C694E4C0065C9C2 /* FotoDTO.swift */,
+				5BA956812C6A4F6C0065C9C2 /* VideoDTO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -229,6 +236,7 @@
 				5BA956772C6A0DA60065C9C2 /* GalleryViewModel.swift */,
 				5BA956732C6905110065C9C2 /* GalleryView.swift */,
 				5BA956792C6A0F9F0065C9C2 /* FotoCell.swift */,
+				5BA9567F2C6A49DB0065C9C2 /* VideoCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -249,6 +257,9 @@
 			dependencies = (
 			);
 			name = VKTest;
+			packageProductDependencies = (
+				5BA9567D2C6A2E610065C9C2 /* Kingfisher */,
+			);
 			productName = VKTest;
 			productReference = 5BA9561A2C65E7730065C9C2 /* VKTest.app */;
 			productType = "com.apple.product-type.application";
@@ -277,6 +288,9 @@
 				Base,
 			);
 			mainGroup = 5BA956112C65E7730065C9C2;
+			packageReferences = (
+				5BA9567C2C6A2E610065C9C2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 5BA9561B2C65E7730065C9C2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -310,6 +324,7 @@
 				5BA9563E2C65ED690065C9C2 /* LoginAssembly.swift in Sources */,
 				5BA9565E2C6805240065C9C2 /* NetworkService.swift in Sources */,
 				5BA9564D2C6659250065C9C2 /* AuthPresenter.swift in Sources */,
+				5BA956822C6A4F6C0065C9C2 /* VideoDTO.swift in Sources */,
 				5BA956662C68057C0065C9C2 /* NetworkEndpoints.swift in Sources */,
 				5BA956542C67901C0065C9C2 /* KeychainService.swift in Sources */,
 				5BA9566C2C68F7DE0065C9C2 /* GalleryPresenter.swift in Sources */,
@@ -324,6 +339,7 @@
 				5BA9563A2C65EA730065C9C2 /* Strings.swift in Sources */,
 				5BA956522C678DD50065C9C2 /* AuthRouter.swift in Sources */,
 				5BA9566A2C68C5D70065C9C2 /* AuthError.swift in Sources */,
+				5BA956802C6A49DB0065C9C2 /* VideoCell.swift in Sources */,
 				5BA9561E2C65E7730065C9C2 /* AppDelegate.swift in Sources */,
 				5BA956402C65ED7C0065C9C2 /* LoginRouter.swift in Sources */,
 				5BA956702C69013E0065C9C2 /* GalleryAssembly.swift in Sources */,
@@ -555,6 +571,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5BA9567C2C6A2E610065C9C2 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5BA9567D2C6A2E610065C9C2 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5BA9567C2C6A2E610065C9C2 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5BA956122C65E7730065C9C2 /* Project object */;
 }

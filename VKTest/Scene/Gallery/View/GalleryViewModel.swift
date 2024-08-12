@@ -16,7 +16,7 @@ struct GalleryViewModel {
 	}
 	
 	struct Video {
-		let title: Int
+		let title: String
 		let urlPrev: String
 		let urlVideo: String
 	}

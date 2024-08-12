@@ -9,19 +9,19 @@ import Foundation
 enum L10n {
 	
 	enum Common {
-		static let ok = NSLocalizedString("common.ok", comment: "")
-		static let error = NSLocalizedString("common.error", comment: "")
-		static let done = NSLocalizedString("common.done", comment: "")
-		static let cancel = NSLocalizedString("common.cancel", comment: "")
+		static let ok = "Ок"
+		static let error = "Ошибка"
+		static let done = "Готово"
+		static let cancel = "Отмена"
 	}
 	
 	enum NetworkError {
-		static let invalidURL = NSLocalizedString("networkError.invalidURL", comment: "")
-		static let networkError = NSLocalizedString("networkError.networkError", comment: "")
-		static let invalidResponse = NSLocalizedString("networkError.invalidResponse", comment: "")
-		static let invalidStatusCode = NSLocalizedString("networkError.invalidStatusCode", comment: "")
-		static let noData = NSLocalizedString("networkError.noData", comment: "")
-		static let failedToDecodeResponse = NSLocalizedString("networkError.failedToDecodeResponse", comment: "")
+		static let invalidURL = "Ошибка URL."
+		static let networkError = "Сетевая ошибка."
+		static let invalidResponse = "Ответ сервера имеет неожиданный формат."
+		static let invalidStatusCode = "Cтатус код не входит в 200..<300."
+		static let noData = "Данные отсутствуют."
+		static let failedToDecodeResponse = "Ошибка декодирования"
 	}
 	
 	enum AuthError {

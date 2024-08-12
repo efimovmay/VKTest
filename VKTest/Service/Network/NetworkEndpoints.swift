@@ -14,6 +14,7 @@ enum NetworkEndpoints {
 	case authorize
 	case blank
 	case fotoGet
+	case fotoGetAll
 	case videoGet
 }
 
@@ -26,6 +27,8 @@ extension NetworkEndpoints: CustomStringConvertible {
 			"/blank.html"
 		case .fotoGet:
 			"/method/photos.get"
+		case .fotoGetAll:
+			"/method/photos.getAll"
 		case .videoGet:
 			"/method/video.get"
 		}
