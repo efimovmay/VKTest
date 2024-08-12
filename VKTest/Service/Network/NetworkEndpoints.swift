@@ -13,6 +13,8 @@ enum NetworkEndpoints {
 	
 	case authorize
 	case blank
+	case fotoGet
+	case videoGet
 }
 
 extension NetworkEndpoints: CustomStringConvertible {
@@ -22,6 +24,10 @@ extension NetworkEndpoints: CustomStringConvertible {
 			"/authorize"
 		case .blank:
 			"/blank.html"
+		case .fotoGet:
+			"/method/photos.get"
+		case .videoGet:
+			"/method/video.get"
 		}
 	}
 }

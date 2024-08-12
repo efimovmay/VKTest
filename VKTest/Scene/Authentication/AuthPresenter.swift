@@ -27,8 +27,7 @@ final class AuthPresenter: NSObject, IAuthPresenter {
 	func viewIsReady(view: IAuthView) {
 		self.view = view
 		guard let request = URLRequestBuilder(baseUrl: NetworkEndpoints.authBaseURL).build(
-			forRequest: NetworkRequestAuth(),
-			token: nil
+			forRequest: NetworkRequestAuth()
 		) else { return }
 		view.loadWebView(request: request)
 	}
@@ -53,6 +52,7 @@ extension AuthPresenter: WKNavigationDelegate {
 			}
 		
 		if let userId = params["user_id"], let token = params["access_token"] {
+			print(userId)
 			router.routeToGalleryView(userId: userId, token: token)
 		}
 		decisionHandler(.cancel)

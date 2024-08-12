@@ -13,7 +13,7 @@ struct Token {
 /// Сервис, собирающий запрос из NetworkRequest.
 protocol IURLRequestBuilder {
 	/// Сервис, собирающий запрос из NetworkRequest.
-	func build(forRequest requestData: INetworkRequest, token: Token?) -> URLRequest?
+	func build(forRequest requestData: INetworkRequest) -> URLRequest?
 }
 
 /// Сервис, собирающий запрос из NetworkRequest.
@@ -21,7 +21,7 @@ struct URLRequestBuilder: IURLRequestBuilder {
 
 	var baseUrl: String
 
-	func build(forRequest requestData: INetworkRequest, token: Token?) -> URLRequest? {
+	func build(forRequest requestData: INetworkRequest) -> URLRequest? {
 		guard var urlComponents = URLComponents(string: baseUrl) else {
 			return nil
 		}
@@ -32,10 +32,6 @@ struct URLRequestBuilder: IURLRequestBuilder {
 		}
 		var request = URLRequest(url: url)
 		request.httpMethod = requestData.method.rawValue
-		
-		if let token = token {
-			request.setValue(token.rawValue, forHTTPHeaderField: "Authorization")
-		}
 		
 		return request
 	}

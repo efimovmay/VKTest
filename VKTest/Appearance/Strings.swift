@@ -32,4 +32,11 @@ enum L10n {
 		static let title = "Mobile Up\nGallery"
 		static let textButton = "Вход через VK"
 	}
+	
+	enum GalleryScreen {
+		static let title = "MobileUp Gallery"
+		static let logout = "Выход"
+		static let segmentFoto = "Фото"
+		static let segmentVideo = "Видео"
+	}
 }

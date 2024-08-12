@@ -8,6 +8,7 @@
 import UIKit
 
 protocol IGalleryRouter {
+	func popToLogin()
 	func showAlert(with error: String?)
 }
 
@@ -17,6 +18,10 @@ final class GalleryRouter: IGalleryRouter {
 	
 	init(navigationController: UINavigationController) {
 		self.navigationController = navigationController
+	}
+	
+	func popToLogin() {
+		navigationController.popToRootViewController(animated: true)
 	}
 	
 	func showAlert(with error: String?) {

@@ -15,7 +15,6 @@ protocol INetworkService {
 	func fetch<T: Decodable>(
 		dataType: T.Type,
 		with requestData: INetworkRequest,
-		token: Token?,
 		completion: @escaping(Result<T, NetworkServiceError>) -> Void
 	)
 	
@@ -58,10 +57,9 @@ extension NetworkService: INetworkService {
 	func fetch<T: Decodable>(
 		dataType: T.Type,
 		with request: INetworkRequest,
-		token: Token? = nil,
 		completion: @escaping(Result<T, NetworkServiceError>) -> Void
 	) {
-		guard let request = requestBuilder.build(forRequest: request, token: token) else {
+		guard let request = requestBuilder.build(forRequest: request) else {
 			completion(.failure(.invalidURL))
 			return
 		}
