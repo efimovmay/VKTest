@@ -50,7 +50,10 @@ extension AuthPresenter: WKNavigationDelegate {
 			}
 		
 		if let userId = params["user_id"], let token = params["access_token"] {
-			router.routeToGalleryView(userId: userId, token: token)
+			UserDefaults.standard.set(userId, forKey: AuthConst.account)
+			let keychainService = KeychainService(account: userId)
+			keychainService.saveToken(token: token)
+			router.routeToGalleryView(keychain: keychainService)
 		}
 		decisionHandler(.cancel)
 	}

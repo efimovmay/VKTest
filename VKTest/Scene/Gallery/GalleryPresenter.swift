@@ -20,6 +20,7 @@ protocol IGalleryPresenter {
 	
 	func fetchFoto()
 	
+	func logout()
 }
 
 final class GalleryPresenter: IGalleryPresenter {
@@ -47,6 +48,7 @@ final class GalleryPresenter: IGalleryPresenter {
 	
 	func logout() {
 		keychain.deleteToken()
+		UserDefaults.standard.removeObject(forKey: AuthConst.account)
 		router.popToLogin()
 	}
 }

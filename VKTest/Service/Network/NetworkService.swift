@@ -18,17 +18,7 @@ protocol INetworkService {
 		token: String?,
 		completion: @escaping(Result<T, NetworkServiceError>) -> Void
 	)
-	
-	/// Метод для получения <T> данных по URL.
-	/// - Parameters:
-	///   - dataType: Тип данных для декодирования.
-	///   - url: Адрес запроса.
-	func fetch<T: Decodable>(
-		dataType: T.Type,
-		url: String,
-		completion: @escaping(Result<T, NetworkServiceError>) -> Void
-	)
-	
+
 	/// Метод для получения Data по URLRequest.
 	/// - Parameters:
 	///   - request: Сформированный URLRequest.
@@ -65,32 +55,6 @@ extension NetworkService: INetworkService {
 			completion(.failure(.invalidURL))
 			return
 		}
-		perform(request: request) { result in
-			switch result {
-			case .success(let data):
-				do {
-					let decodedData = try self.decoder.decode(T.self, from: data)
-					completion(.success(decodedData))
-				} catch {
-					completion(.failure(.failedToDecodeResponse(error)))
-				}
-			case .failure(let error):
-				completion(.failure(error))
-			}
-		}
-	}
-	
-	func fetch<T: Decodable>(
-		dataType: T.Type,
-		url: String,
-		completion: @escaping(Result<T, NetworkServiceError>) -> Void
-	) {
-		guard let url = URL(string: url) else {
-			completion(.failure(.invalidURL))
-			return
-		}
-		let request = URLRequest(url: url)
-		
 		perform(request: request) { result in
 			switch result {
 			case .success(let data):

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B63E7E12C6B41C5008D7F61 /* AuthConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63E7E02C6B41C5008D7F61 /* AuthConst.swift */; };
 		5BA9561E2C65E7730065C9C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9561D2C65E7730065C9C2 /* AppDelegate.swift */; };
 		5BA956202C65E7730065C9C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9561F2C65E7730065C9C2 /* SceneDelegate.swift */; };
 		5BA956222C65E7730065C9C2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956212C65E7730065C9C2 /* LoginViewController.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B63E7E02C6B41C5008D7F61 /* AuthConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthConst.swift; sourceTree = "<group>"; };
 		5BA9561A2C65E7730065C9C2 /* VKTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BA9561D2C65E7730065C9C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BA9561F2C65E7730065C9C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B63E7DF2C6B40A9008D7F61 /* Foto */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Foto;
+			sourceTree = "<group>";
+		};
 		5BA956112C65E7730065C9C2 = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +129,7 @@
 				5BA956322C65E9C80065C9C2 /* Resource */,
 				5BA956352C65E9E90065C9C2 /* Service */,
 				5BA956342C65E9D90065C9C2 /* Scene */,
+				5B63E7DF2C6B40A9008D7F61 /* Foto */,
 				5BA9561D2C65E7730065C9C2 /* AppDelegate.swift */,
 				5BA9561F2C65E7730065C9C2 /* SceneDelegate.swift */,
 			);
@@ -150,6 +160,7 @@
 			children = (
 				5BA956752C694E4C0065C9C2 /* FotoDTO.swift */,
 				5BA956812C6A4F6C0065C9C2 /* VideoDTO.swift */,
+				5B63E7E02C6B41C5008D7F61 /* AuthConst.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -331,6 +342,7 @@
 				5BA956642C6805740065C9C2 /* HTTPMethod.swift in Sources */,
 				5BA956572C67930B0065C9C2 /* GalleryViewController.swift in Sources */,
 				5BA956682C6806030065C9C2 /* URLRequestBuilder.swift in Sources */,
+				5B63E7E12C6B41C5008D7F61 /* AuthConst.swift in Sources */,
 				5BA956442C65F0670065C9C2 /* LoginView.swift in Sources */,
 				5BA956622C68056F0065C9C2 /* NetworkRequest.swift in Sources */,
 				5BA956222C65E7730065C9C2 /* LoginViewController.swift in Sources */,

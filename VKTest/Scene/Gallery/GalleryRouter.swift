@@ -21,7 +21,8 @@ final class GalleryRouter: IGalleryRouter {
 	}
 	
 	func popToLogin() {
-		navigationController.popToRootViewController(animated: true)
+		let loginViewController = LoginAssembly.makeModule(navigationController: navigationController)
+		navigationController.setViewControllers([loginViewController], animated: true)
 	}
 	
 	func showAlert(with error: String?) {

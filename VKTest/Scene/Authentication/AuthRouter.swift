@@ -8,8 +8,7 @@
 import UIKit
 
 protocol IAuthRouter {
-	func routeToGalleryView(userId: String, token: String)
-	func closeWindow()
+	func routeToGalleryView(keychain: KeychainService)
 	func showAlert(with error: String?)
 }
 
@@ -21,20 +20,13 @@ final class AuthRouter: IAuthRouter {
 		self.navigationController = navigationController
 	}
 	
-	func routeToGalleryView(userId: String, token: String) {
-		navigationController.pushViewController(
-			GalleryAssembly.makeModule(
-				navigationController: navigationController,
-				userId: userId,
-				token: token
-			),
-			animated: true
+	func routeToGalleryView(keychain: KeychainService) {
+		navigationController.dismiss(animated: true)
+		let galleryViewController = GalleryAssembly.makeModule(
+			navigationController: navigationController,
+			keychain: keychain
 		)
-		closeWindow()
-	}
-	
-	func closeWindow() {
-		navigationController.dismiss(animated: false)
+		navigationController.setViewControllers([galleryViewController], animated: true)
 	}
 	
 	func showAlert(with error: String?) {

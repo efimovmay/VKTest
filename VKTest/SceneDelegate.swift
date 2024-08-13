@@ -17,25 +17,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		window = UIWindow(windowScene: windowScene)
 		
 		let navController = UINavigationController()
-		let rootViewController = makeGallery(navigationController: navController)
-	//	let rootViewController = LoginAssembly.makeModule(navigationController: navController)
-		navController.pushViewController(rootViewController, animated: false)
 		
+		if let account = UserDefaults.standard.string(forKey: AuthConst.account) {
+			let keychain = KeychainService(account: account)
+			let rootViewController = GalleryAssembly.makeModule(navigationController: navController, keychain: keychain)
+			navController.pushViewController(rootViewController, animated: false)
+		} else {
+			let rootViewController = LoginAssembly.makeModule(navigationController: navController)
+			navController.pushViewController(rootViewController, animated: false)
+		}
+
 		window?.rootViewController = navController
 		window?.makeKeyAndVisible()
-	}
-	
-	func makeGallery(navigationController: UINavigationController) -> UIViewController {
-		let keychainService = KeychainService(account: "381340939")
-		let networkService = NetworkService(baseUrl: NetworkEndpoints.baseURL)
-		let router = GalleryRouter(navigationController: navigationController)
-		let presenter = GalleryPresenter(
-			router: router,
-			network: networkService,
-			keychain: keychainService
-		)
-		let viewController = GalleryViewController(presenter: presenter)
-		
-		return viewController
 	}
 }

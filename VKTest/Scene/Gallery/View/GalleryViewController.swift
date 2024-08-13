@@ -46,6 +46,7 @@ private extension GalleryViewController {
 	
 	@objc
 	func logout() {
+		presenter.logout()
 	}
 	
 	func switchState(toShowVideo: Bool) {
@@ -69,6 +70,7 @@ private extension GalleryViewController {
 			target: self,
 			action: #selector(logout)
 		)
+		navigationItem.rightBarButtonItem?.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .normal)
 		
 		contentView.segmentControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
 		
