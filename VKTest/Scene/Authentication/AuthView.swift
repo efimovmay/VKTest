@@ -27,7 +27,7 @@ final class AuthView: UIView {
 
 private extension AuthView {
 	func setupUI() {
-		backgroundColor = .systemBackground
+		backgroundColor = .white
 	}
 	
 	func setupLayout() {

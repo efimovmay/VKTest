@@ -59,7 +59,8 @@ private extension LoginView {
 		let button = UIButton()
 		var config = UIButton.Configuration.filled()
 		config.background.cornerRadius = Sizes.LoginScreen.authButtonCorner
-		config.baseBackgroundColor = .black
+		config.baseBackgroundColor = .label
+		config.baseForegroundColor = .systemBackground
 		config.title = L10n.LoginScreen.textButton
 		button.configuration = config
 

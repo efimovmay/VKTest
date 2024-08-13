@@ -13,6 +13,7 @@ enum L10n {
 		static let error = "Ошибка"
 		static let done = "Готово"
 		static let cancel = "Отмена"
+		static let message = "Сообщение"
 	}
 	
 	enum NetworkError {
@@ -38,5 +39,10 @@ enum L10n {
 		static let logout = "Выход"
 		static let segmentFoto = "Фото"
 		static let segmentVideo = "Видео"
+	}
+	
+	enum PhotoScreen {
+		static let sendError = "Ошибка отправки"
+		static let sendEnd = "Действие выполнено"
 	}
 }

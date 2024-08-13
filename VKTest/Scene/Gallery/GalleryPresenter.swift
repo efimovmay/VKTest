@@ -63,7 +63,7 @@ extension GalleryPresenter {
 	}
 	
 	func fotoDidSelect(at index: Int) {
-		
+		router.showPhoto(photoData: fotos[index])
 	}
 	
 	func getCountVideo() -> Int {

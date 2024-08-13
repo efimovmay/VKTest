@@ -17,7 +17,7 @@ class GalleryViewController: UIViewController {
 	
 	private let presenter: IGalleryPresenter
 	private lazy var contentView = GalleryView()
-	
+
 	init(presenter: IGalleryPresenter) {
 		self.presenter = presenter
 		super.init(nibName: nil, bundle: nil)
@@ -64,14 +64,15 @@ private extension GalleryViewController {
 	func setupUI() {
 		title = L10n.GalleryScreen.title
 		
+		navigationController?.navigationBar.tintColor = .label
+		navigationItem.backButtonTitle = ""
 		navigationItem.rightBarButtonItem = UIBarButtonItem(
 			title: L10n.GalleryScreen.logout,
 			style: .plain,
 			target: self,
 			action: #selector(logout)
 		)
-		navigationItem.rightBarButtonItem?.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .normal)
-		
+
 		contentView.segmentControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
 		
 		contentView.fotoCollectionView.dataSource = self
@@ -81,6 +82,8 @@ private extension GalleryViewController {
 		contentView.videoCollectionView.delegate = self
 	}
 }
+
+
 
 extension GalleryViewController: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

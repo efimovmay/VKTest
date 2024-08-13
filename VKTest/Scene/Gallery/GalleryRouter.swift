@@ -9,6 +9,7 @@ import UIKit
 
 protocol IGalleryRouter {
 	func popToLogin()
+	func showPhoto(photoData: GalleryViewModel.Foto)
 	func showAlert(with error: String?)
 }
 
@@ -23,6 +24,13 @@ final class GalleryRouter: IGalleryRouter {
 	func popToLogin() {
 		let loginViewController = LoginAssembly.makeModule(navigationController: navigationController)
 		navigationController.setViewControllers([loginViewController], animated: true)
+	}
+	
+	func showPhoto(photoData: GalleryViewModel.Foto) {
+		let router = PhotoRouter(navigationController: navigationController)
+		let presenter = PhotoPresenter(router: router, photoData: photoData)
+		let viewController = PhotoViewController(presenter: presenter)
+		navigationController.pushViewController(viewController, animated: true)
 	}
 	
 	func showAlert(with error: String?) {

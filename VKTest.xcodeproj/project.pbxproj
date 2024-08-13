@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5B63E7E12C6B41C5008D7F61 /* AuthConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63E7E02C6B41C5008D7F61 /* AuthConst.swift */; };
+		5B63E7E32C6B4CFC008D7F61 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63E7E22C6B4CFC008D7F61 /* PhotoViewController.swift */; };
+		5B63E7E62C6B7537008D7F61 /* PhotoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63E7E52C6B7537008D7F61 /* PhotoPresenter.swift */; };
+		5B63E7E82C6B8708008D7F61 /* PhotoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63E7E72C6B8708008D7F61 /* PhotoRouter.swift */; };
 		5BA9561E2C65E7730065C9C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9561D2C65E7730065C9C2 /* AppDelegate.swift */; };
 		5BA956202C65E7730065C9C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9561F2C65E7730065C9C2 /* SceneDelegate.swift */; };
 		5BA956222C65E7730065C9C2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956212C65E7730065C9C2 /* LoginViewController.swift */; };
@@ -47,6 +50,9 @@
 
 /* Begin PBXFileReference section */
 		5B63E7E02C6B41C5008D7F61 /* AuthConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthConst.swift; sourceTree = "<group>"; };
+		5B63E7E22C6B4CFC008D7F61 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		5B63E7E52C6B7537008D7F61 /* PhotoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPresenter.swift; sourceTree = "<group>"; };
+		5B63E7E72C6B8708008D7F61 /* PhotoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRouter.swift; sourceTree = "<group>"; };
 		5BA9561A2C65E7730065C9C2 /* VKTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BA9561D2C65E7730065C9C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BA9561F2C65E7730065C9C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,8 +106,18 @@
 		5B63E7DF2C6B40A9008D7F61 /* Foto */ = {
 			isa = PBXGroup;
 			children = (
+				5B63E7E22C6B4CFC008D7F61 /* PhotoViewController.swift */,
+				5B63E7E52C6B7537008D7F61 /* PhotoPresenter.swift */,
+				5B63E7E72C6B8708008D7F61 /* PhotoRouter.swift */,
 			);
 			path = Foto;
+			sourceTree = "<group>";
+		};
+		5B63E7E42C6B4D75008D7F61 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Video;
 			sourceTree = "<group>";
 		};
 		5BA956112C65E7730065C9C2 = {
@@ -130,6 +146,7 @@
 				5BA956352C65E9E90065C9C2 /* Service */,
 				5BA956342C65E9D90065C9C2 /* Scene */,
 				5B63E7DF2C6B40A9008D7F61 /* Foto */,
+				5B63E7E42C6B4D75008D7F61 /* Video */,
 				5BA9561D2C65E7730065C9C2 /* AppDelegate.swift */,
 				5BA9561F2C65E7730065C9C2 /* SceneDelegate.swift */,
 			);
@@ -342,6 +359,7 @@
 				5BA956642C6805740065C9C2 /* HTTPMethod.swift in Sources */,
 				5BA956572C67930B0065C9C2 /* GalleryViewController.swift in Sources */,
 				5BA956682C6806030065C9C2 /* URLRequestBuilder.swift in Sources */,
+				5B63E7E62C6B7537008D7F61 /* PhotoPresenter.swift in Sources */,
 				5B63E7E12C6B41C5008D7F61 /* AuthConst.swift in Sources */,
 				5BA956442C65F0670065C9C2 /* LoginView.swift in Sources */,
 				5BA956622C68056F0065C9C2 /* NetworkRequest.swift in Sources */,
@@ -350,8 +368,10 @@
 				5BA9566E2C68F86C0065C9C2 /* GalleryRouter.swift in Sources */,
 				5BA9563A2C65EA730065C9C2 /* Strings.swift in Sources */,
 				5BA956522C678DD50065C9C2 /* AuthRouter.swift in Sources */,
+				5B63E7E82C6B8708008D7F61 /* PhotoRouter.swift in Sources */,
 				5BA9566A2C68C5D70065C9C2 /* AuthError.swift in Sources */,
 				5BA956802C6A49DB0065C9C2 /* VideoCell.swift in Sources */,
+				5B63E7E32C6B4CFC008D7F61 /* PhotoViewController.swift in Sources */,
 				5BA9561E2C65E7730065C9C2 /* AppDelegate.swift in Sources */,
 				5BA956402C65ED7C0065C9C2 /* LoginRouter.swift in Sources */,
 				5BA956702C69013E0065C9C2 /* GalleryAssembly.swift in Sources */,
@@ -507,6 +527,7 @@
 				DEVELOPMENT_TEAM = 6RAY94QJCX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VKTest/Resource/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Aplication want save photo to gallery";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -517,7 +538,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.VKTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.VKTesthhhhhh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -539,6 +560,7 @@
 				DEVELOPMENT_TEAM = 6RAY94QJCX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VKTest/Resource/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Aplication want save photo to gallery";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -549,7 +571,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.VKTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.VKTesthhhhhh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
