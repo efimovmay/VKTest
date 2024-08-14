@@ -125,16 +125,18 @@ private extension GalleryPresenter {
 	
 	func parsingFoto(from model: FotoDTO) {
 		maxCountPhotos = model.response.count
-		model.response.items.forEach { item in
-			if let urlPrev = item.sizes.first(where: { $0.type == "q"}) {
-				fotos.append(GalleryViewModel.Foto(
-					data: item.date,
-					urlPrev: urlPrev.url,
-					urlOrig: item.origPhoto.url
-				))
+		DispatchQueue.main.async {
+			model.response.items.forEach { item in
+				if let urlPrev = item.sizes.first(where: { $0.type == "q"}) {
+					self.fotos.append(GalleryViewModel.Foto(
+						data: item.date,
+						urlPrev: urlPrev.url,
+						urlOrig: item.origPhoto.url
+					))
+					self.view?.addPhotoCollectionItem()
+				}
 			}
 		}
-		reloadFotoCollection()
 	}
 	
 	func parsingVideo(from model: VideoDTO) {
@@ -142,7 +144,7 @@ private extension GalleryPresenter {
 			if let urlPrev = item.image.first(where: { $0.width > 400 && $0.width < 1000}) {
 				videos.append(GalleryViewModel.Video(
 					title: item.title,
-					urlPrev: item.image[3].url,
+					urlPrev: urlPrev.url,
 					urlVideo: item.player
 				))
 			}

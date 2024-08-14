@@ -11,6 +11,7 @@ import UIKit
 protocol IGalleryView: AnyObject {
 	func reloadFotoCollection()
 	func reloadVideoCollection()
+	func addPhotoCollectionItem()
 }
 
 class GalleryViewController: UIViewController {
@@ -158,5 +159,12 @@ extension GalleryViewController: IGalleryView {
 	}
 	func reloadVideoCollection() {
 		contentView.videoCollectionView.reloadData()
+	}
+	
+	func addPhotoCollectionItem() {
+		let indexPath = IndexPath(item: presenter.getCountFotos() - 1, section: .zero)
+		contentView.fotoCollectionView.performBatchUpdates({
+			contentView.fotoCollectionView.insertItems(at: [indexPath])
+		}, completion: nil)
 	}
 }
