@@ -25,8 +25,8 @@ enum L10n {
 		static let failedToDecodeResponse = "Ошибка декодирования"
 	}
 	
-	enum AuthError {
-		static let webLoadFail = "Не удалось загрузить станицу авторизации"
+	enum WebView {
+		static let error = "Ошибка webView"
 	}
 	
 	enum LoginScreen {

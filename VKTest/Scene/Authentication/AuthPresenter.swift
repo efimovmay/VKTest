@@ -63,6 +63,10 @@ extension AuthPresenter: WKNavigationDelegate {
 	}
 	
 	func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-		router.showAlert(with: AuthError.webLoadFail.errorDescription)
+		router.showAlert(with: WebViewError.navigationFail(error).localizedDescription)
+	}
+	
+	func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+		router.showAlert(with: WebViewError.navigationFail(error).localizedDescription)
 	}
 }

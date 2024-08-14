@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import WebKit
 
-protocol IVideoPresenter: AnyObject {
+protocol IVideoPresenter: AnyObject, WKNavigationDelegate {
 	func viewIsReady(view: IVideoView)
 	func share(activityItems: [AnyObject])
 	func showError(error: String?)
@@ -39,6 +40,16 @@ final class VideoPresenter: NSObject, IVideoPresenter {
 	}
 }
 
-private extension VideoPresenter {
-
+extension VideoPresenter: WKNavigationDelegate {
+	func webView(_: WKWebView, didCommit: WKNavigation!) {
+		view?.loadPageDone()
+	}
+	
+	func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+		router.showAlert(with: L10n.Common.error, and: WebViewError.navigationFail(error).localizedDescription)
+	}
+	
+	func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+		router.showAlert(with: L10n.Common.error, and: WebViewError.navigationFail(error).localizedDescription)
+	}
 }

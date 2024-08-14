@@ -10,6 +10,7 @@ import WebKit
 
 protocol IVideoView: AnyObject {
 	func render(title: String, videoURL: URL?)
+	func loadPageDone()
 }
 
 final class VideoViewController: UIViewController {
@@ -38,6 +39,7 @@ final class VideoViewController: UIViewController {
 		presenter.viewIsReady(view: self)
 	}
 }
+
 private extension VideoViewController {
 	@objc
 	func menuTapped() {
@@ -83,6 +85,7 @@ private extension VideoViewController {
 		webView.sizeToFit()
 		webView.scrollView.isScrollEnabled = false
 		webView.translatesAutoresizingMaskIntoConstraints = false
+		webView.navigationDelegate = presenter
 		return webView
 	}
 	
@@ -102,7 +105,10 @@ extension VideoViewController: IVideoView {
 		if let videoURL = videoURL {
 			let request = URLRequest(url: videoURL)
 			webView.load(request)
-			
 		}
+	}
+	
+	func loadPageDone() {
+		activityIndicator.stopAnimating()
 	}
 }
