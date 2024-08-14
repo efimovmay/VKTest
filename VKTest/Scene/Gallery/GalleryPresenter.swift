@@ -9,6 +9,8 @@ import Foundation
 
 protocol IGalleryPresenter {
 	func viewIsReady(view: IGalleryView)
+	func fetchFoto()
+	func logout()
 	
 	func getCountFotos() -> Int
 	func getFoto(at index: Int) -> GalleryViewModel.Foto
@@ -17,10 +19,6 @@ protocol IGalleryPresenter {
 	func getCountVideo() -> Int
 	func getVideo(at index: Int) -> GalleryViewModel.Video
 	func videoDidSelect(at index: Int)
-	
-	func fetchFoto()
-	
-	func logout()
 }
 
 final class GalleryPresenter: IGalleryPresenter {
@@ -32,7 +30,7 @@ final class GalleryPresenter: IGalleryPresenter {
 	
 	private var fotos: [GalleryViewModel.Foto] = .init()
 	private var videos: [GalleryViewModel.Video] = .init()
-	private var maxCount: Int?
+	private var maxCountPhotos: Int?
 	
 	init(router: IGalleryRouter, network: INetworkService, keychain: KeychainService) {
 		self.router = router
@@ -74,11 +72,11 @@ extension GalleryPresenter {
 	}
 	
 	func videoDidSelect(at index: Int) {
-		
+		router.showVideo(videoData: videos[index])
 	}
 	
 	func fetchFoto() {
-		guard maxCount != fotos.count else { return }
+		guard maxCountPhotos != fotos.count else { return }
 		network.fetch(
 			dataType: FotoDTO.self,
 			with: NetworkRequestFotosAll(offset: fotos.count),
@@ -116,7 +114,7 @@ private extension GalleryPresenter {
 	}
 	
 	func parsingFoto(from model: FotoDTO) {
-		maxCount = model.response.count
+		maxCountPhotos = model.response.count
 		model.response.items.forEach { item in
 			fotos.append(GalleryViewModel.Foto(
 				data: item.date,

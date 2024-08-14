@@ -58,7 +58,6 @@ private extension VideoViewCell {
 			titleView.bottomAnchor.constraint(equalTo: videoImageView.bottomAnchor, constant: -Sizes.Padding.normal),
 			titleView.trailingAnchor.constraint(equalTo: videoImageView.trailingAnchor, constant: -Sizes.Padding.normal),
 			titleView.widthAnchor.constraint(equalTo: titleLabel.widthAnchor, constant: Sizes.Padding.semiDouble),
-			titleView.heightAnchor.constraint(greaterThanOrEqualToConstant: Sizes.Padding.semiDouble),
 			titleView.heightAnchor.constraint(greaterThanOrEqualTo: titleLabel.heightAnchor, constant: Sizes.Padding.normal),
 			
 			titleLabel.centerXAnchor.constraint(equalTo: titleView.centerXAnchor),
@@ -81,7 +80,7 @@ private extension VideoViewCell {
 		let label = UILabel()
 		label.textAlignment = .left
 		label.textColor = .black
-		label.font = UIFont.systemFont(ofSize: 17)
+		label.font = UIFont.systemFont(ofSize: 13)
 		label.numberOfLines = .zero
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label

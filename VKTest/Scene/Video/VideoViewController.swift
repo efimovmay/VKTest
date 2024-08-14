@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 protocol IVideoView: AnyObject {
 	func render(title: String, videoURL: URL?)
@@ -15,7 +16,9 @@ final class VideoViewController: UIViewController {
 	
 	private let presenter: IVideoPresenter
 	
+	private lazy var webView: WKWebView = makeWebView()
 	private lazy var activityIndicator: UIActivityIndicatorView = makeActivityIndicator()
+	
 	private var videoURL: URL?
 	
 	init(presenter: IVideoPresenter) {
@@ -38,7 +41,12 @@ final class VideoViewController: UIViewController {
 private extension VideoViewController {
 	@objc
 	func menuTapped() {
-
+		if let videoURL = videoURL as? NSURL {
+			let activityItems = [videoURL] as [AnyObject]
+			presenter.share(activityItems: activityItems)
+		} else {
+			presenter.showError(error: L10n.PhotoScreen.sendError)
+		}
 	}
 }
 
@@ -56,26 +64,26 @@ private extension VideoViewController {
 	}
 	
 	func setupLayout() {
-//		view.addSubview(videoImageView)
+		view.addSubview(webView)
 		view.addSubview(activityIndicator)
 		
 		NSLayoutConstraint.activate([
-//			videoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: Sizes.Padding.double),
-//			videoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//			videoImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//			videoImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+			webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+			webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+			webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 			
 			activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 		])
 	}
 	
-	func makePhotoView() -> UIImageView {
-		let image = UIImageView()
-		image.contentMode = .scaleAspectFit
-		image.clipsToBounds = true
-		image.translatesAutoresizingMaskIntoConstraints = false
-		return image
+	func makeWebView() -> WKWebView {
+		let webView = WKWebView()
+		webView.sizeToFit()
+		webView.scrollView.isScrollEnabled = false
+		webView.translatesAutoresizingMaskIntoConstraints = false
+		return webView
 	}
 	
 	func makeActivityIndicator() -> UIActivityIndicatorView {
@@ -89,6 +97,12 @@ private extension VideoViewController {
 extension VideoViewController: IVideoView {
 	func render(title: String, videoURL: URL?) {
 		self.title = title
-
+		self.videoURL = videoURL
+		
+		if let videoURL = videoURL {
+			let request = URLRequest(url: videoURL)
+			webView.load(request)
+			
+		}
 	}
 }

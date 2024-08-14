@@ -17,6 +17,7 @@ final class PhotoViewController: UIViewController {
 	
 	private lazy var photoImageView: UIImageView = makePhotoView()
 	private lazy var activityIndicator: UIActivityIndicatorView = makeActivityIndicator()
+	
 	private var photoURL: URL?
 	
 	init(presenter: IPhotoPresenter) {
@@ -67,7 +68,7 @@ private extension PhotoViewController {
 		view.addSubview(activityIndicator)
 		
 		NSLayoutConstraint.activate([
-			photoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: Sizes.Padding.double),
+			photoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
 			photoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			photoImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 			photoImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),

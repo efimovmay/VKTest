@@ -25,8 +25,7 @@ final class PhotoRouter: IPhotoRouter {
 		shareController.completionWithItemsHandler = { _, success, _, error in
 			if success {
 				self.showAlert(with: L10n.Common.message, and: L10n.PhotoScreen.sendEnd)
-			} 
-			if let error {
+			} else if error != nil {
 				self.showAlert(with: L10n.Common.error, and: L10n.PhotoScreen.sendError)
 			}
 		}
