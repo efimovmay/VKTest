@@ -17,6 +17,7 @@ final class PhotoPresenter: NSObject, IPhotoPresenter {
 	
 	private weak var view: IPhotoView?
 	private let router: IPhotoRouter
+	
 	private let photoData: GalleryViewModel.Foto
 	private let dateFormatter = DateFormatter()
 	

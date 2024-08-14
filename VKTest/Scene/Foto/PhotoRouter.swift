@@ -22,10 +22,11 @@ final class PhotoRouter: IPhotoRouter {
 	
 	func showShareMenu(with activityItems: [AnyObject]) {
 		let shareController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-		shareController.completionWithItemsHandler = { _, success, _, _ in
+		shareController.completionWithItemsHandler = { _, success, _, error in
 			if success {
 				self.showAlert(with: L10n.Common.message, and: L10n.PhotoScreen.sendEnd)
-			} else {
+			} 
+			if let error {
 				self.showAlert(with: L10n.Common.error, and: L10n.PhotoScreen.sendError)
 			}
 		}

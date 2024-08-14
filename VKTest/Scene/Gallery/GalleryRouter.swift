@@ -27,9 +27,7 @@ final class GalleryRouter: IGalleryRouter {
 	}
 	
 	func showPhoto(photoData: GalleryViewModel.Foto) {
-		let router = PhotoRouter(navigationController: navigationController)
-		let presenter = PhotoPresenter(router: router, photoData: photoData)
-		let viewController = PhotoViewController(presenter: presenter)
+		let viewController = PhotoAssembly.makeModule(navigationController: navigationController, photoData: photoData)
 		navigationController.pushViewController(viewController, animated: true)
 	}
 	

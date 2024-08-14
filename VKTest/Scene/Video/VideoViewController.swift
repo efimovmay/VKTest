@@ -1,25 +1,24 @@
 //
-//  PhotoViewController.swift
+//  VideoViewController.swift
 //  VKTest
 //
-//  Created by Aleksey Efimov on 13.08.2024.
+//  Created by Aleksey Efimov on 14.08.2024.
 //
 
 import UIKit
 
-protocol IPhotoView: AnyObject {
-	func render(title: String, photoURL: URL?)
+protocol IVideoView: AnyObject {
+	func render(title: String, videoURL: URL?)
 }
 
-final class PhotoViewController: UIViewController {
+final class VideoViewController: UIViewController {
 	
-	private let presenter: IPhotoPresenter
+	private let presenter: IVideoPresenter
 	
-	private lazy var photoImageView: UIImageView = makePhotoView()
 	private lazy var activityIndicator: UIActivityIndicatorView = makeActivityIndicator()
-	private var photoURL: URL?
+	private var videoURL: URL?
 	
-	init(presenter: IPhotoPresenter) {
+	init(presenter: IVideoPresenter) {
 		self.presenter = presenter
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -36,21 +35,14 @@ final class PhotoViewController: UIViewController {
 		presenter.viewIsReady(view: self)
 	}
 }
-
-private extension PhotoViewController {
+private extension VideoViewController {
 	@objc
 	func menuTapped() {
-		if let image: UIImage = photoImageView.image, let photoURL = photoURL as? NSURL {
-			let activityItems = [photoURL, image] as [AnyObject]
-			presenter.share(activityItems: activityItems)
-		} else {
-			presenter.showError(error: L10n.PhotoScreen.sendError)
-		}
+
 	}
 }
 
-
-private extension PhotoViewController {
+private extension VideoViewController {
 	func setupUI() {
 		view.backgroundColor = .systemBackground
 		
@@ -59,19 +51,19 @@ private extension PhotoViewController {
 			target: self,
 			action: #selector(menuTapped)
 		)
-
+		
 		activityIndicator.startAnimating()
 	}
 	
 	func setupLayout() {
-		view.addSubview(photoImageView)
+//		view.addSubview(videoImageView)
 		view.addSubview(activityIndicator)
 		
 		NSLayoutConstraint.activate([
-			photoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: Sizes.Padding.double),
-			photoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-			photoImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-			photoImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+//			videoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: Sizes.Padding.double),
+//			videoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//			videoImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//			videoImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 			
 			activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -94,17 +86,9 @@ private extension PhotoViewController {
 	}
 }
 
-extension PhotoViewController: IPhotoView {
-	func render(title: String, photoURL: URL?) {
+extension VideoViewController: IVideoView {
+	func render(title: String, videoURL: URL?) {
 		self.title = title
-		self.photoURL = photoURL
-		photoImageView.kf.setImage(with: photoURL) { [weak self] result in
-			switch result {
-			case .success(_):
-				self?.activityIndicator.stopAnimating()
-			case .failure(let erorr):
-				self?.presenter.showError(error: erorr.localizedDescription)
-			}
-		}
+
 	}
 }
