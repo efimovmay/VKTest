@@ -20,4 +20,13 @@ struct GalleryViewModel {
 		let urlPrev: String
 		let urlVideo: String
 	}
+	
+	enum Collections: Int {
+		case photo = 0
+		case video = 1
+		
+		var tag: Int {
+			return self.rawValue
+		}
+	}
 }

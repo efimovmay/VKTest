@@ -53,6 +53,7 @@ extension AuthPresenter: WKNavigationDelegate {
 		
 		if let token = params[AuthConst.token.apiKey],
 		   let expiration = params[AuthConst.expiration.apiKey] {
+			
 			guard let expiration = Double(expiration) else { return }
 			if authService.login(token: token, expiration: expiration) {
 				router.routeToGalleryView()

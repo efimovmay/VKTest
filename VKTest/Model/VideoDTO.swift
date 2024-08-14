@@ -22,5 +22,6 @@ struct VideoDTO: Decodable {
 	
 	struct PrevURL: Decodable {
 		let url: String
+		let width: Int
 	}
 }

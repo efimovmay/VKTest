@@ -18,6 +18,8 @@ class GalleryViewController: UIViewController {
 	private let presenter: IGalleryPresenter
 	private lazy var contentView = GalleryView()
 
+	// MARK: - Initialization
+	
 	init(presenter: IGalleryPresenter) {
 		self.presenter = presenter
 		super.init(nibName: nil, bundle: nil)
@@ -27,6 +29,8 @@ class GalleryViewController: UIViewController {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+	
+	// MARK: - Lifecycle
 	
 	override func loadView() {
 		view = contentView
@@ -39,9 +43,11 @@ class GalleryViewController: UIViewController {
 	}
 }
 
+// MARK: - Actions
+
 private extension GalleryViewController {
 	@objc func segmentChanged(_ sender: UISegmentedControl) {
-		switchState(toShowVideo: sender.selectedSegmentIndex == 1)
+		switchState(toShowVideo: sender.selectedSegmentIndex == GalleryViewModel.Collections.video.tag)
 	}
 	
 	@objc
@@ -59,6 +65,8 @@ private extension GalleryViewController {
 		}
 	}
 }
+
+// MARK: - SetupUI
 
 private extension GalleryViewController {
 	func setupUI() {
@@ -83,12 +91,12 @@ private extension GalleryViewController {
 	}
 }
 
-
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 
 extension GalleryViewController: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		switch collectionView.tag {
-		case 1:
+		case GalleryViewModel.Collections.photo.tag:
 			presenter.getCountFotos()
 		default:
 			presenter.getCountVideo()
@@ -97,7 +105,7 @@ extension GalleryViewController: UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		switch collectionView.tag {
-		case 1:
+		case GalleryViewModel.Collections.photo.tag:
 			guard let cell = collectionView.dequeueReusableCell(
 				withReuseIdentifier: FotoViewCell.identifier,
 				for: indexPath
@@ -126,7 +134,7 @@ extension GalleryViewController: UICollectionViewDataSource {
 extension GalleryViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		switch collectionView.tag {
-		case 1:
+		case GalleryViewModel.Collections.photo.tag:
 			presenter.fotoDidSelect(at: indexPath.item)
 		default:
 			presenter.videoDidSelect(at: indexPath.item)
@@ -134,13 +142,15 @@ extension GalleryViewController: UICollectionViewDelegate {
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-		if collectionView.tag == 1,
+		if collectionView.tag == GalleryViewModel.Collections.photo.tag,
 		   presenter.getCountFotos() > 0,
 		   indexPath.item == presenter.getCountFotos() - 4 {
 			presenter.fetchFoto()
 		}
 	}
 }
+
+// MARK: - IGalleryView
 
 extension GalleryViewController: IGalleryView {
 	func reloadFotoCollection() {

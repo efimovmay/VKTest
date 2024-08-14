@@ -22,6 +22,8 @@ final class VideoViewController: UIViewController {
 	
 	private var videoURL: URL?
 	
+	// MARK: - Initialization
+	
 	init(presenter: IVideoPresenter) {
 		self.presenter = presenter
 		super.init(nibName: nil, bundle: nil)
@@ -32,6 +34,8 @@ final class VideoViewController: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	// MARK: - Lifecycle
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupUI()
@@ -39,6 +43,8 @@ final class VideoViewController: UIViewController {
 		presenter.viewIsReady(view: self)
 	}
 }
+
+// MARK: - Actions
 
 private extension VideoViewController {
 	@objc
@@ -51,6 +57,8 @@ private extension VideoViewController {
 		}
 	}
 }
+
+// MARK: - SetupUI
 
 private extension VideoViewController {
 	func setupUI() {

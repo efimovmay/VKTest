@@ -13,6 +13,7 @@ final class FotoViewCell: UICollectionViewCell {
 	static let identifier = String(describing: FotoViewCell.self)
 
 	lazy var fotoImageView: UIImageView = makeImageView()
+	lazy var activityIndicator: UIActivityIndicatorView = makeActivityIndicator()
 
 
 	// MARK: - Initialization
@@ -27,13 +28,22 @@ final class FotoViewCell: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	// MARK: - Lifecycle
+	
 	override func prepareForReuse() {
 		super.prepareForReuse()
 		fotoImageView.image = nil
 	}
 	
 	func configure(imageUrl: String) {
-		fotoImageView.kf.setImage(with: URL(string: imageUrl))
+		fotoImageView.kf.setImage(with: URL(string: imageUrl)) { [weak self] result in
+			switch result {
+			case .success(_):
+				self?.activityIndicator.stopAnimating()
+			case .failure(_):
+				break
+			}
+		}
 	}
 }
 
@@ -43,13 +53,19 @@ private extension FotoViewCell {
 	
 	func setupLayout() {
 		addSubview(fotoImageView)
+		addSubview(activityIndicator)
 		
 		NSLayoutConstraint.activate([
 			fotoImageView.topAnchor.constraint(equalTo: topAnchor),
 			fotoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
 			fotoImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
 			fotoImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+			
+			activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+			activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
 		])
+		
+		activityIndicator.startAnimating()
 	}
 	
 	func makeImageView() -> UIImageView {
@@ -60,5 +76,12 @@ private extension FotoViewCell {
 		image.isUserInteractionEnabled = true
 		image.translatesAutoresizingMaskIntoConstraints = false
 		return image
+	}
+	
+	func makeActivityIndicator() -> UIActivityIndicatorView {
+		let indicator = UIActivityIndicatorView()
+		indicator.style = .large
+		indicator.translatesAutoresizingMaskIntoConstraints = false
+		return indicator
 	}
 }

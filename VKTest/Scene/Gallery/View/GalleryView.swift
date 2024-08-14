@@ -58,13 +58,13 @@ private extension GalleryView {
 			L10n.GalleryScreen.segmentVideo
 		])
 		segmentControl.translatesAutoresizingMaskIntoConstraints = false
-		segmentControl.selectedSegmentIndex = 0
+		segmentControl.selectedSegmentIndex = GalleryViewModel.Collections.photo.tag
 		return segmentControl
 	}
 	
 	func makeFotoCollectionView() -> UICollectionView {
 		let collection = UICollectionView(frame: .zero, collectionViewLayout: createFotosCollectionLayout())
-		collection.tag = 1
+		collection.tag = GalleryViewModel.Collections.photo.tag
 		collection.isHidden = false
 		collection.register(
 			FotoViewCell.self,
@@ -98,7 +98,7 @@ private extension GalleryView {
 	
 	func makeVideoCollectionView() -> UICollectionView {
 		let collection = UICollectionView(frame: .zero, collectionViewLayout: createVideoCollectionLayout())
-		collection.tag = 2
+		collection.tag = GalleryViewModel.Collections.video.tag
 		collection.isHidden = true
 		collection.register(
 			VideoViewCell.self,

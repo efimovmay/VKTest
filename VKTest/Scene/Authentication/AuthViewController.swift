@@ -18,6 +18,8 @@ class AuthViewController: UIViewController {
 	private let presenter: IAuthPresenter
 	private lazy var contentView = AuthView()
 	
+	// MARK: - Initialization
+	
 	init(presenter: IAuthPresenter) {
 		self.presenter = presenter
 		super.init(nibName: nil, bundle: nil)
@@ -27,6 +29,8 @@ class AuthViewController: UIViewController {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+	
+	// MARK: - Lifecycle
 	
 	override func loadView() {
 		view = contentView
@@ -38,12 +42,15 @@ class AuthViewController: UIViewController {
 		setupUI()
 	}
 }
+// MARK: - SetupUI
 
 private extension AuthViewController {
 	func setupUI() {
 		contentView.webView.navigationDelegate = presenter
 	}
 }
+
+// MARK: - IAuthView
 
 extension AuthViewController: IAuthView {
 	func loadWebView(request: URLRequest) {

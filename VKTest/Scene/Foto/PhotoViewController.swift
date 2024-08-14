@@ -20,6 +20,8 @@ final class PhotoViewController: UIViewController {
 	
 	private var photoURL: URL?
 	
+	// MARK: - Initialization
+	
 	init(presenter: IPhotoPresenter) {
 		self.presenter = presenter
 		super.init(nibName: nil, bundle: nil)
@@ -30,6 +32,8 @@ final class PhotoViewController: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	// MARK: - Lifecycle
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupUI()
@@ -37,6 +41,8 @@ final class PhotoViewController: UIViewController {
 		presenter.viewIsReady(view: self)
 	}
 }
+
+// MARK: - Actions
 
 private extension PhotoViewController {
 	@objc
@@ -49,6 +55,8 @@ private extension PhotoViewController {
 		}
 	}
 }
+
+// MARK: - SetupUI
 
 private extension PhotoViewController {
 	func setupUI() {
@@ -93,6 +101,8 @@ private extension PhotoViewController {
 		return indicator
 	}
 }
+
+// MARK: - IPhotoView
 
 extension PhotoViewController: IPhotoView {
 	func render(title: String, photoURL: URL?) {

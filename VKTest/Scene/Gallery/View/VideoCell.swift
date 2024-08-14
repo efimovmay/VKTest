@@ -15,7 +15,7 @@ final class VideoViewCell: UICollectionViewCell {
 	lazy var videoImageView: UIImageView = makeImageView()
 	lazy var titleView: UIView = makeTitleView()
 	lazy var titleLabel: UILabel = makeLabel()
-	
+	lazy var activityIndicator: UIActivityIndicatorView = makeActivityIndicator()
 	
 	// MARK: - Initialization
 	
@@ -29,6 +29,8 @@ final class VideoViewCell: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	// MARK: - Lifecycle
+	
 	override func prepareForReuse() {
 		super.prepareForReuse()
 		videoImageView.image = nil
@@ -36,7 +38,14 @@ final class VideoViewCell: UICollectionViewCell {
 	
 	func configure(imageUrl: String, title: String) {
 		titleLabel.text = title
-		videoImageView.kf.setImage(with: URL(string: imageUrl))
+		videoImageView.kf.setImage(with: URL(string: imageUrl)) { [weak self] result in
+			switch result {
+			case .success(_):
+				self?.activityIndicator.stopAnimating()
+			case .failure(_):
+				break
+			}
+		}
 	}
 }
 
@@ -48,6 +57,7 @@ private extension VideoViewCell {
 		addSubview(videoImageView)
 		videoImageView.addSubview(titleView)
 		titleView.addSubview(titleLabel)
+		addSubview(activityIndicator)
 		
 		NSLayoutConstraint.activate([
 			videoImageView.topAnchor.constraint(equalTo: topAnchor),
@@ -63,6 +73,9 @@ private extension VideoViewCell {
 			titleLabel.centerXAnchor.constraint(equalTo: titleView.centerXAnchor),
 			titleLabel.centerYAnchor.constraint(equalTo: titleView.centerYAnchor),
 			titleLabel.widthAnchor.constraint(lessThanOrEqualToConstant: frame.width * 2/3),
+			
+			activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+			activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
 		])
 	}
 	
@@ -93,5 +106,12 @@ private extension VideoViewCell {
 		view.clipsToBounds = true
 		view.translatesAutoresizingMaskIntoConstraints = false
 		return view
+	}
+	
+	func makeActivityIndicator() -> UIActivityIndicatorView {
+		let indicator = UIActivityIndicatorView()
+		indicator.style = .large
+		indicator.translatesAutoresizingMaskIntoConstraints = false
+		return indicator
 	}
 }

@@ -32,9 +32,9 @@ private extension LoginView {
 	func setupLayout() {
 		addSubview(titleLabel)
 		addSubview(authButton)
-		
+
 		NSLayoutConstraint.activate([
-			titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 160),
+			titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.main.bounds.height / 5),
 			titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Sizes.Padding.semiDouble),
 			titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Sizes.Padding.semiDouble),
 			
