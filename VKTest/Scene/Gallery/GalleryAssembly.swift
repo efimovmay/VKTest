@@ -9,13 +9,13 @@ import UIKit
 
 enum GalleryAssembly {
 	
-	static func makeModule(navigationController: UINavigationController, keychain: KeychainService) -> UIViewController {
+	static func makeModule(navigationController: UINavigationController, authService: IAuthService) -> UIViewController {
 		let networkService = NetworkService(baseUrl: NetworkEndpoints.baseURL)
-		let router = GalleryRouter(navigationController: navigationController)
+		let router = GalleryRouter(navigationController: navigationController, authService: authService)
 		let presenter = GalleryPresenter(
 			router: router,
 			network: networkService,
-			keychain: keychain
+			authService: authService
 		)
 		let viewController = GalleryViewController(presenter: presenter)
 		

@@ -17,13 +17,18 @@ protocol IGalleryRouter {
 final class GalleryRouter: IGalleryRouter {
 	
 	private let navigationController: UINavigationController
+	private let authService: IAuthService
 	
-	init(navigationController: UINavigationController) {
+	init(navigationController: UINavigationController, authService: IAuthService) {
 		self.navigationController = navigationController
+		self.authService = authService
 	}
 	
 	func popToLogin() {
-		let loginViewController = LoginAssembly.makeModule(navigationController: navigationController)
+		let loginViewController = LoginAssembly.makeModule(
+			navigationController: navigationController,
+			authService: authService
+		)
 		navigationController.setViewControllers([loginViewController], animated: true)
 	}
 	

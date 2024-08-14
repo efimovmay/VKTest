@@ -26,16 +26,16 @@ final class GalleryPresenter: IGalleryPresenter {
 	private weak var view: IGalleryView?
 	private let router: IGalleryRouter
 	private let network: INetworkService
-	private let keychain: KeychainService
+	private let authService: IAuthService
 	
 	private var fotos: [GalleryViewModel.Foto] = .init()
 	private var videos: [GalleryViewModel.Video] = .init()
 	private var maxCountPhotos: Int?
 	
-	init(router: IGalleryRouter, network: INetworkService, keychain: KeychainService) {
+	init(router: IGalleryRouter, network: INetworkService, authService: IAuthService) {
 		self.router = router
 		self.network = network
-		self.keychain = keychain
+		self.authService = authService
 	}
 	
 	func viewIsReady(view: IGalleryView) {
@@ -45,9 +45,11 @@ final class GalleryPresenter: IGalleryPresenter {
 	}
 	
 	func logout() {
-		keychain.deleteToken()
-		UserDefaults.standard.removeObject(forKey: AuthConst.account)
-		router.popToLogin()
+		if authService.logout() {
+			router.popToLogin()
+		} else {
+			router.showAlert(with: AuthError.logout.errorDescription)
+		}
 	}
 }
 
@@ -77,10 +79,14 @@ extension GalleryPresenter {
 	
 	func fetchFoto() {
 		guard maxCountPhotos != fotos.count else { return }
+		guard let token = authService.getToken() else {
+			router.showAlert(with: AuthError.logout.errorDescription)
+			return
+		}
 		network.fetch(
 			dataType: FotoDTO.self,
 			with: NetworkRequestFotosAll(offset: fotos.count),
-			token: keychain.getToken()
+			token: token.rawValue
 		) { [weak self] result in
 			switch result {
 			case .success(let fotoDTO):
@@ -97,10 +103,14 @@ extension GalleryPresenter {
 private extension GalleryPresenter {
 
 	func fetchVideo() {
+		guard let token = authService.getToken() else {
+			router.showAlert(with: AuthError.logout.errorDescription)
+			return
+		}
 		network.fetch(
 			dataType: VideoDTO.self,
 			with: NetworkRequestVideos(),
-			token: keychain.getToken()
+			token: token.rawValue
 		) { [weak self] result in
 			switch result {
 			case .success(let videoDTO):

@@ -16,9 +16,11 @@ final class AuthPresenter: NSObject, IAuthPresenter {
 	
 	private weak var view: IAuthView?
 	private let router: IAuthRouter
+	private let authService: IAuthService
 	
-	init(router: IAuthRouter) {
+	init(router: IAuthRouter, authService: IAuthService) {
 		self.router = router
+		self.authService = authService
 	}
 	
 	func viewIsReady(view: IAuthView) {
@@ -49,11 +51,15 @@ extension AuthPresenter: WKNavigationDelegate {
 				return dict
 			}
 		
-		if let userId = params["user_id"], let token = params["access_token"] {
-			UserDefaults.standard.set(userId, forKey: AuthConst.account)
-			let keychainService = KeychainService(account: userId)
-			keychainService.saveToken(token: token)
-			router.routeToGalleryView(keychain: keychainService)
+		if let token = params[AuthConst.token.apiKey],
+		   let expiration = params[AuthConst.expiration.apiKey] {
+			guard let expiration = Double(expiration) else { return }
+			if authService.login(token: token, expiration: expiration) {
+				router.routeToGalleryView()
+			} else {
+				router.showAlert(with: AuthError.save.errorDescription)
+			}
+			
 		}
 		decisionHandler(.cancel)
 	}
@@ -63,10 +69,6 @@ extension AuthPresenter: WKNavigationDelegate {
 	}
 	
 	func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-		router.showAlert(with: WebViewError.navigationFail(error).localizedDescription)
-	}
-	
-	func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
 		router.showAlert(with: WebViewError.navigationFail(error).localizedDescription)
 	}
 }

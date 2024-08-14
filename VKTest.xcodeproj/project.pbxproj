@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B63E7E12C6B41C5008D7F61 /* AuthConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63E7E02C6B41C5008D7F61 /* AuthConst.swift */; };
 		5B63E7E32C6B4CFC008D7F61 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63E7E22C6B4CFC008D7F61 /* PhotoViewController.swift */; };
 		5B63E7E62C6B7537008D7F61 /* PhotoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63E7E52C6B7537008D7F61 /* PhotoPresenter.swift */; };
 		5B63E7E82C6B8708008D7F61 /* PhotoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63E7E72C6B8708008D7F61 /* PhotoRouter.swift */; };
@@ -16,6 +15,7 @@
 		5B63E7EE2C6C8885008D7F61 /* VideoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63E7ED2C6C8885008D7F61 /* VideoPresenter.swift */; };
 		5B63E7F02C6C88C0008D7F61 /* VideoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63E7EF2C6C88C0008D7F61 /* VideoRouter.swift */; };
 		5B63E7F22C6C8904008D7F61 /* VideoAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63E7F12C6C8904008D7F61 /* VideoAssembly.swift */; };
+		5B71904A2C6CF535005B1B05 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7190492C6CF535005B1B05 /* AuthError.swift */; };
 		5BA9561E2C65E7730065C9C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9561D2C65E7730065C9C2 /* AppDelegate.swift */; };
 		5BA956202C65E7730065C9C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9561F2C65E7730065C9C2 /* SceneDelegate.swift */; };
 		5BA956222C65E7730065C9C2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956212C65E7730065C9C2 /* LoginViewController.swift */; };
@@ -51,10 +51,11 @@
 		5BA956802C6A49DB0065C9C2 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9567F2C6A49DB0065C9C2 /* VideoCell.swift */; };
 		5BA956822C6A4F6C0065C9C2 /* VideoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA956812C6A4F6C0065C9C2 /* VideoDTO.swift */; };
 		5BBBE5D12C6CAC0200061C48 /* WebViewError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBE5D02C6CAC0200061C48 /* WebViewError.swift */; };
+		5BBBE5D32C6CCFFB00061C48 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBE5D22C6CCFFB00061C48 /* AuthService.swift */; };
+		5BBBE5D52C6CD41000061C48 /* AuthConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBE5D42C6CD41000061C48 /* AuthConst.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5B63E7E02C6B41C5008D7F61 /* AuthConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthConst.swift; sourceTree = "<group>"; };
 		5B63E7E22C6B4CFC008D7F61 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		5B63E7E52C6B7537008D7F61 /* PhotoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPresenter.swift; sourceTree = "<group>"; };
 		5B63E7E72C6B8708008D7F61 /* PhotoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRouter.swift; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 		5B63E7ED2C6C8885008D7F61 /* VideoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPresenter.swift; sourceTree = "<group>"; };
 		5B63E7EF2C6C88C0008D7F61 /* VideoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRouter.swift; sourceTree = "<group>"; };
 		5B63E7F12C6C8904008D7F61 /* VideoAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAssembly.swift; sourceTree = "<group>"; };
+		5B7190492C6CF535005B1B05 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		5BA9561A2C65E7730065C9C2 /* VKTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BA9561D2C65E7730065C9C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BA9561F2C65E7730065C9C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,8 @@
 		5BA9567F2C6A49DB0065C9C2 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		5BA956812C6A4F6C0065C9C2 /* VideoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDTO.swift; sourceTree = "<group>"; };
 		5BBBE5D02C6CAC0200061C48 /* WebViewError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewError.swift; sourceTree = "<group>"; };
+		5BBBE5D22C6CCFFB00061C48 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		5BBBE5D42C6CD41000061C48 /* AuthConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthConst.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +193,6 @@
 			children = (
 				5BA956752C694E4C0065C9C2 /* FotoDTO.swift */,
 				5BA956812C6A4F6C0065C9C2 /* VideoDTO.swift */,
-				5B63E7E02C6B41C5008D7F61 /* AuthConst.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -212,6 +215,9 @@
 				5BA9565C2C68050A0065C9C2 /* Network */,
 				5BA956532C67901C0065C9C2 /* KeychainService.swift */,
 				5BBBE5D02C6CAC0200061C48 /* WebViewError.swift */,
+				5BBBE5D22C6CCFFB00061C48 /* AuthService.swift */,
+				5BBBE5D42C6CD41000061C48 /* AuthConst.swift */,
+				5B7190492C6CF535005B1B05 /* AuthError.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -369,16 +375,18 @@
 				5BA956682C6806030065C9C2 /* URLRequestBuilder.swift in Sources */,
 				5B63E7E62C6B7537008D7F61 /* PhotoPresenter.swift in Sources */,
 				5BBBE5D12C6CAC0200061C48 /* WebViewError.swift in Sources */,
-				5B63E7E12C6B41C5008D7F61 /* AuthConst.swift in Sources */,
 				5BA956442C65F0670065C9C2 /* LoginView.swift in Sources */,
 				5BA956622C68056F0065C9C2 /* NetworkRequest.swift in Sources */,
 				5BA956222C65E7730065C9C2 /* LoginViewController.swift in Sources */,
 				5BA956762C694E4C0065C9C2 /* FotoDTO.swift in Sources */,
+				5B71904A2C6CF535005B1B05 /* AuthError.swift in Sources */,
 				5BA9566E2C68F86C0065C9C2 /* GalleryRouter.swift in Sources */,
 				5BA9563A2C65EA730065C9C2 /* Strings.swift in Sources */,
+				5BBBE5D52C6CD41000061C48 /* AuthConst.swift in Sources */,
 				5BA956522C678DD50065C9C2 /* AuthRouter.swift in Sources */,
 				5B63E7E82C6B8708008D7F61 /* PhotoRouter.swift in Sources */,
 				5B63E7EC2C6C85BE008D7F61 /* VideoViewController.swift in Sources */,
+				5BBBE5D32C6CCFFB00061C48 /* AuthService.swift in Sources */,
 				5BA956802C6A49DB0065C9C2 /* VideoCell.swift in Sources */,
 				5B63E7E32C6B4CFC008D7F61 /* PhotoViewController.swift in Sources */,
 				5BA9561E2C65E7730065C9C2 /* AppDelegate.swift in Sources */,

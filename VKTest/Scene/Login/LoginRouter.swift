@@ -14,14 +14,16 @@ protocol ILoginRouter {
 final class LoginRouter: ILoginRouter {
 	
 	private let navigationController: UINavigationController
+	private let authService: IAuthService
 
-	init(navigationController: UINavigationController) {
+	init(navigationController: UINavigationController, authService: IAuthService) {
 		self.navigationController = navigationController
+		self.authService = authService
 	}
 	
 	func routeToAuthView() {
 		navigationController.present(
-			AuthAssembly.makeModule(navigationController: navigationController), animated: true
+			AuthAssembly.makeModule(navigationController: navigationController, authService: authService), animated: true
 		)
 	}
 }

@@ -6,10 +6,6 @@
 
 import Foundation
 
-struct Token {
-	let rawValue: String
-}
-
 /// Сервис, собирающий запрос из NetworkRequest.
 protocol IURLRequestBuilder {
 	/// Сервис, собирающий запрос из NetworkRequest.

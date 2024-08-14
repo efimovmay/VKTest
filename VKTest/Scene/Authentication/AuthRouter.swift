@@ -8,23 +8,25 @@
 import UIKit
 
 protocol IAuthRouter {
-	func routeToGalleryView(keychain: KeychainService)
+	func routeToGalleryView()
 	func showAlert(with error: String?)
 }
 
 final class AuthRouter: IAuthRouter {
 	
 	private let navigationController: UINavigationController
+	private let authService: IAuthService
 	
-	init(navigationController: UINavigationController) {
+	init(navigationController: UINavigationController, authService: IAuthService) {
 		self.navigationController = navigationController
+		self.authService = authService
 	}
 	
-	func routeToGalleryView(keychain: KeychainService) {
+	func routeToGalleryView() {
 		navigationController.dismiss(animated: true)
 		let galleryViewController = GalleryAssembly.makeModule(
 			navigationController: navigationController,
-			keychain: keychain
+			authService: authService
 		)
 		navigationController.setViewControllers([galleryViewController], animated: true)
 	}

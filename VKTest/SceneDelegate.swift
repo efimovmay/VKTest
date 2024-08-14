@@ -16,18 +16,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		window = UIWindow(windowScene: windowScene)
 		
-		let navController = UINavigationController()
+		let navigationController = UINavigationController()
 		
-		if let account = UserDefaults.standard.string(forKey: AuthConst.account) {
-			let keychain = KeychainService(account: account)
-			let rootViewController = GalleryAssembly.makeModule(navigationController: navController, keychain: keychain)
-			navController.pushViewController(rootViewController, animated: false)
+		let keychain = KeychainService()
+		let authService = AuthService(keychainService: keychain)
+		
+		if authService.getToken() == nil {
+			let rootViewController = LoginAssembly.makeModule(
+				navigationController: navigationController,
+				authService: authService
+			)
+			navigationController.pushViewController(rootViewController, animated: false)
+
 		} else {
-			let rootViewController = LoginAssembly.makeModule(navigationController: navController)
-			navController.pushViewController(rootViewController, animated: false)
+			let rootViewController = GalleryAssembly.makeModule(
+				navigationController: navigationController,
+				authService: authService
+			)
+			navigationController.pushViewController(rootViewController, animated: false)
 		}
 
-		window?.rootViewController = navController
+		window?.rootViewController = navigationController
 		window?.makeKeyAndVisible()
 	}
 }

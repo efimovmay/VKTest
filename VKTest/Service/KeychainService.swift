@@ -7,15 +7,17 @@
 
 import Foundation
 
-struct KeychainService {
-	
-	let account: String
-	
-	@discardableResult
-	func saveToken(token: String) -> Bool {
-		guard let tokenData = token.data(using: .utf8) else { return false }
+protocol IKeychainService {
+	func saveToken(tokenData: Data) -> Bool
+	func getToken() -> Data?
+	func deleteToken() -> Bool
+}
+
+struct KeychainService: IKeychainService {
+
+	func saveToken(tokenData: Data) -> Bool {
 		let keychainItem = [
-			kSecAttrAccount: account,
+			kSecAttrAccount: AuthConst.client,
 			kSecValueData: tokenData,
 			kSecAttrAccessible: kSecAttrAccessibleWhenUnlocked,
 			kSecClass: kSecClassGenericPassword
@@ -32,9 +34,9 @@ struct KeychainService {
 		}
 	}
 	
-	func getToken() -> String? {
+	func getToken() -> Data? {
 		let query = [
-			kSecAttrAccount: account,
+			kSecAttrAccount: AuthConst.client,
 			kSecReturnData: true,
 			kSecClass: kSecClassGenericPassword,
 			kSecMatchLimit: kSecMatchLimitOne
@@ -44,16 +46,15 @@ struct KeychainService {
 		let status = SecItemCopyMatching(query, &dataTypeRef)
 		
 		if status == errSecSuccess, let data = dataTypeRef as? Data {
-			return String(data: data, encoding: .utf8)
+			return data
 		} else {
 			return nil
 		}
 	}
 	
-	@discardableResult
 	func deleteToken() -> Bool {
 		let query = [
-			kSecAttrAccount: account,
+			kSecAttrAccount: AuthConst.client,
 			kSecClass: kSecClassGenericPassword
 		] as CFDictionary
 		

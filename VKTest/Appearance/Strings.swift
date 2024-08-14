@@ -29,6 +29,12 @@ enum L10n {
 		static let error = "Ошибка webView"
 	}
 	
+	enum AuthError {
+		static let save = "Ошибка сохранения токена"
+		static let logout = "Ошибка удаления токена"
+		static let get = "Токен отсутствует или истек срок действия"
+	}
+	
 	enum LoginScreen {
 		static let title = "Mobile Up\nGallery"
 		static let textButton = "Вход через VK"
